@@ -1,0 +1,167 @@
+.page {
+    display: grid;
+    grid-template-rows: 20px 1fr 20px;
+    align-items: center;
+    justify-items: center;
+    min-height: 100svh;
+    gap: 64px;
+    background-image: var(--fade-out);
+    margin-bottom: var(--margin-bottom);
+    z-index: 10;
+}
+  
+.main {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    max-width: 1000px;
+}
+
+.header {
+    margin-top: 1.6rem;
+}
+
+.cover {
+    max-height: 70vh;
+    overflow: hidden;
+}
+
+.mainImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.meta {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.metaIn {
+    display: block;
+}
+
+.metaBlock {
+    margin-bottom: 1rem;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.share {
+    margin-bottom: 2rem;
+}
+
+.share button {
+    border: 0.5px dotted var(--black);
+    padding: 3px 4px 0px;
+    margin: 0px 5px;
+    background-color: transparent;
+    border-radius: 50px;
+}
+
+.share button img,
+.share button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 2px;
+}
+
+.share button:hover {
+    background-color: var(--purple);
+    cursor: pointer;
+}
+
+.cat {
+    margin: 0px 2px;
+}
+
+.cat:hover {
+    cursor: pointer;
+}
+
+.issue {
+    border: 0.5px dotted var(--black);
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin: 0px 5px;
+    transition: all ease-in-out;
+    background-color: #0066cc;
+}
+
+.issue a:hover {
+    text-decoration: none;
+}
+
+.issue:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.history {
+    border: 0.5px dotted var(--black);
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin: 0px 5px;
+}
+
+.history:hover {
+    cursor: pointer;
+}
+
+.article p {
+    margin-bottom: 1.6rem;
+}
+
+.article {
+  background: var(--white);
+  margin: 2rem auto;
+  line-height: 1.7;
+  font-size: 1.7rem;
+  color: var(--black);
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  margin-top: 2.5rem;
+  font-weight: 600;
+}
+
+.article a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.imageWrapper {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.5rem;
+}
+
+.copiedPopover {
+  background: var(--highlight-yellow);
+  border: 1px dotted var(--black);
+  padding: 1em 1.6em;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  pointer-events: none;
+  animation: fadeOut 1.1s ease forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}

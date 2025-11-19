@@ -1,0 +1,84 @@
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  border-top: 1px solid var(--highlight-yellow);
+}
+
+.quote {
+  font-size: 1.5rem;
+  line-height: 1.55;
+  max-width: 720px;
+  text-align: left;
+  font-style: italic;
+}
+
+.meta {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.issue {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.issueButton {
+  margin-top: 0.4rem;
+  font-size: 0.80rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.issueButton:hover {
+  opacity: 0.85;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 22px;              /* <- rounded rect width */
+  height: 6px;              /* <- thin pill shape */
+  border-radius: 6px;       /* fully rounded ends */
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.active {
+  background: #111;         /* make active rectangle darker */
+}

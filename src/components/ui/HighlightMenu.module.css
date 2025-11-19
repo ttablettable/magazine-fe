@@ -1,0 +1,69 @@
+.menuWrapper {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 20px 25px 15px rgba(0, 0, 0, 0.1);
+
+  margin-top: 1.6em;
+  border-radius: 50px;
+
+  animation: fadeIn 0.2s ease forwards;
+  opacity: 0;
+  background-color: var(--pink);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu button {
+  background-color: none;
+
+  width: 3em;
+  height: 3em;
+
+  margin: 0.6em;
+
+  border-radius: 50px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+.menu button svg {
+  width: 16px;
+}
+
+.menu button:hover {
+  background-color: var(--pink);
+  transform: scale(1.2);
+}
+
+.menuWrapper {
+  position: absolute;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 150ms ease;
+}
+
+.menuWrapper.closing {
+  opacity: 0;
+  pointer-events: none;
+}

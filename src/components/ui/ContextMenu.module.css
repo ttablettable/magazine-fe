@@ -1,0 +1,52 @@
+.content {
+    z-index: 50;
+    min-width: 8rem;
+    overflow: hidden;
+    border: 1px dotted var(--black);
+    background: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.item:hover {
+    background: var(--pink);   
+}
+
+.subTrigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.subTrigger:hover {
+    background: var(--pink);
+}
+
+.checkboxItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.checkboxIndicator {
+    margin-right: 0.5rem;
+}
+
+.shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: #666;
+}

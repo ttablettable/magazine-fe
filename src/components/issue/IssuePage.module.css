@@ -1,0 +1,146 @@
+.page {
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 80px;
+  gap: 64px;
+  background-image: var(--fade-out);
+  margin-bottom: var(--margin-bottom);
+  z-index: 10;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+}
+
+.title {
+  border: 0.5px solid var(--black);
+}
+
+.title h1 {
+  text-transform: uppercase;
+  font-size: 5rem;
+  border-bottom: 0.5px solid var(--black);
+  font-weight: 400;
+}
+
+.title h4 {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 200;
+    margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.story {
+  border-top: 0.5px solid var(--black);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.story:hover {
+  transform: scale(1.02);
+}
+
+.story h3 {
+  font-size: 1.2em;
+}
+
+.story h4 {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: lowercase;
+  margin-bottom: 10px;
+  width: fit-content;
+  padding: 0.2rem 0rem;
+}
+
+.story h4 a {
+  border-bottom: 1px dotted var(--highlight-green);
+  color: inherit;
+}
+
+.story h4::before {
+  content: "#";
+}
+
+.story p a:hover {
+  border-bottom: 1px dotted var(--highlight-pink);
+  color: var(--highlight-pink);
+}
+
+.interviews {
+    border-top: 0.5px solid var(--black);
+    margin-top: 2rem;
+}
+
+.interviews h2 {
+    font-size: 2rem;
+
+}
+
+.intGroup {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 40px;
+}
+
+.rest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.essays {
+    
+}
+
+.essay {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.columns {
+    gap: 200px;
+}
+
+.column {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.fineprint {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: var(--purple);
+  padding: 40px 20px;
+  border-top: 0.5px solid var(--black);
+  border-bottom: 0.5px solid var(--black);
+  box-sizing: border-box;
+}
+
+.fineprint p,
+.fineprint h6 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 0.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}

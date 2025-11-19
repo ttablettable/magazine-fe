@@ -1,0 +1,36 @@
+.popover {
+  position: fixed;
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  font-size: 1.4em;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
+  color: var(--white);
+  animation: fadeInUp 0.15s ease-out forwards;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.neutral {
+  background: rgba(35, 35, 35, 0.8);
+}
+
+.success {
+  background: var(--green);
+}
+
+.error {
+  background: var(--purple);
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

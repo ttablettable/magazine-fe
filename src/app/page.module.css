@@ -1,0 +1,93 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 30px;
+  margin-top: 53px;
+  background-image: linear-gradient(to bottom, var(--white) 85%, rgba(255, 255, 255, 0));
+  margin-bottom: var(--margin-bottom);
+}
+
+.main ol {
+  padding-left: 0;
+  margin: 0;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  list-style-position: inside;
+}
+
+.main li:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.main code {
+  font-family: inherit;
+  background: var(--gray-alpha-100);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.people {
+  max-width: 1000px;
+}
+
+.peepsImg {
+  max-width: 250px;
+}
+
+.dates {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 0.8em;
+  color: var(--khaki);
+}
+
+.issue {
+  border: 0.5px dotted var(--black);
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 0px 5px;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    background: var(--button-primary-hover);
+    border-color: transparent;
+  }
+
+  a.secondary:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 32px;
+    padding-bottom: 80px;
+  }
+
+  .main {
+    align-items: center;
+  }
+
+  .main ol {
+    text-align: center;
+  }
+
+  a.secondary {
+    min-width: auto;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}

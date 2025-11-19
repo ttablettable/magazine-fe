@@ -1,0 +1,36 @@
+.box {
+    position: fixed;
+    right: 0;
+    bottom: 25%;
+    background-color: var(--purple);
+    z-index: 20;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    border: 0.5px dotted var(--black);
+}
+
+.icon {
+    display: flex;
+    padding: 5px;
+    width: 3rem;
+    justify-items: center;
+    left: 0px;
+    transition: transform 0.3s ease;
+    margin: 0.11rem 0.44rem;
+}
+
+.icon img,
+.icon svg {
+    max-width: 90%;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.icon img:hover,
+.icon svg:hover {
+    transform: scale(1.1);
+}
