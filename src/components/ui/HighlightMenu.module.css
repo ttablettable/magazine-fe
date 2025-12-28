@@ -8,14 +8,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  box-shadow: 20px 25px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 
   margin-top: 1.6em;
   border-radius: 50px;
 
   animation: fadeIn 0.2s ease forwards;
   opacity: 0;
-  background-color: var(--pink);
+  background-color: var(--khaki);
 }
 
 @keyframes fadeIn {

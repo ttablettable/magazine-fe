@@ -3,8 +3,13 @@
 :root {
   --garamond: "EB Garamond", serif;
   --playfair: "Playfair Display", serif;
+  --mono: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   --white: #fffff8;
   --black: #111111;
+  --gray: #f5f5f5;
+
+  --quicksand: rgb(180, 148, 139);
+  --mercury: rgb(229, 228, 228);
 
   /* brand colors */
   --green: #a3b847;
@@ -19,9 +24,12 @@
   --highlight-pink: #be629f;
 
   --margin-bottom: 350px;
-  --max-with: 1000px;
-
+  --max-width: 1000px;
   --fade-out: linear-gradient(to bottom, var(--white) 85%, rgba(255, 255, 255, 0));
+
+  --shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 html,
@@ -109,7 +117,7 @@ li {
 }
 
 div:has(> blockquote) {
-  background-color: #ededed;
+  background-color: var(--gray);
   margin: 10px auto 0px;
   padding: 15px;
   border-top: 0.5px solid var(--black);
@@ -139,7 +147,6 @@ cite {
 button {
   border: 0.5px dotted var(--black);
   padding: 3px 4px 0px;
-  margin: 0px 5px;
   background-color: transparent;
   border-radius: 50px;
   transition: background-color 0.3s ease;
@@ -148,4 +155,38 @@ button {
 button:hover {
   background-color: var(--purple);
   cursor: pointer;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 27rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 30px;
+  margin-top: 53px;
+  background-image: linear-gradient(to bottom, var(--white) 85%, rgba(255, 255, 255, 0));
+  /* margin-bottom: var(--margin-bottom); */
+}
+
+.main ol {
+  padding-left: 0;
+  margin: 0;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  list-style-position: inside;
+}
+
+.main li:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.main code {
+  font-family: inherit;
+  background: var(--gray-alpha-100);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
 }

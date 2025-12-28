@@ -6,9 +6,9 @@
     position: fixed;
     top: 0;
     z-index: 30;
-    background-color: var(--white);
+    background-color: var(--highlight-yellow);
     width: 100%;
-    border-bottom: 1px solid var(--black);
+    /* border-bottom: 1px solid var(--black); */
 }
 
 .navbar {
@@ -17,11 +17,29 @@
     gap: 10px;
 }
 
+.navbarAction {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.navLogo {
+    background-color: transparent;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.navLogo img {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+}
+
 .navButton {
     padding: 0.25em 1em;
-    background-color: var(--white);
-    border: 2px dotted var(--highlight-yellow);
-    border-radius: 50px;
+    font-size: 1.2rem;
 }
   
 .navButton:hover {

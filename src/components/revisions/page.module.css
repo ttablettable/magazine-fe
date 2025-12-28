@@ -1,0 +1,151 @@
+.inlineDiffBlock {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  padding: 1rem;
+  border-radius: 6px;
+  background: var(--revision-bg, #fafafa);
+  border: 1px solid var(--revision-border, #e5e5e5);
+  overflow-x: auto;
+}
+
+/* diff line types */
+.diffAdd {
+  background: var(--diff-add-bg, #e6ffef);
+  color: var(--diff-add-text, #0f5132);
+  border-left: 3px solid var(--diff-add-border, #24a148);
+  padding-left: 0.5rem;
+}
+
+.diffRemove {
+  background: var(--diff-remove-bg, #ffecec);
+  color: var(--diff-remove-text, #842029);
+  border-left: 3px solid var(--diff-remove-border, #c23430);
+  padding-left: 0.5rem;
+}
+
+.diffContext {
+  opacity: 0.65;
+  padding-left: 0.5rem;
+}
+
+/* side-by-side */
+.diffView {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.diffCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diffCol pre {
+  background: var(--revision-bg, #fafafa);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--revision-border, #e5e5e5);
+}
+
+/* =========================================
+   REVISION DROPDOWN — TOGGLE BUTTON
+   ========================================= */
+
+.revisionDropdown {
+  position: relative;
+  width: 100%;
+}
+
+.revisionToggle {
+  width: 100%;
+  background: var(--white);
+  border: 0.5px dashed var(--black);
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.revisionToggle:hover {
+  background: var(--highlight-yellow);
+  border-color: var(--black);
+}
+
+/* =========================================
+   DROPDOWN PANEL
+   ========================================= */
+
+.revisionList {
+  margin-top: 0.5rem;
+  background: var(--green);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  box-shadow: var(--shadow);
+
+  position: absolute;
+  width: 100%;
+  z-index: 20;
+}
+
+/* Divider line like screenshot */
+.revisionDivider {
+  border: none;
+  border-bottom: 1px solid var(--black);
+  margin: 0.5rem 0 0.75rem 0;
+}
+
+/* =========================================
+   LIST ITEMS
+   ========================================= */
+
+.revisionItem {
+  background: transparent;
+  border: none;
+  color: var(--black);
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-radius: 0px;
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.revisionItem:hover {
+  background: var(--highlight-green);
+  color: var(--black);
+}
+
+/* =========================================
+   LOAD MORE BUTTON
+   ========================================= */
+
+.revisionLoadMore {
+  margin-top: 0.4rem;
+  background: #2a2a2a;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #dcdcdc;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.revisionLoadMore:hover {
+  background: #333;
+}

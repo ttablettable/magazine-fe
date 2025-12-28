@@ -1,121 +1,122 @@
 .page {
-    display: grid;
-    grid-template-rows: 20px 1fr 20px;
-    align-items: center;
-    justify-items: center;
-    min-height: 100svh;
-    gap: 64px;
-    background-image: var(--fade-out);
-    margin-bottom: var(--margin-bottom);
-    z-index: 10;
+  min-height: 100svh;
 }
-  
+
 .main {
-    display: flex;
-    flex-direction: column;
-    grid-row-start: 2;
-    max-width: 1000px;
+  margin-top: 6.5%;
+  width: 87.5%;
+  padding-left: 12.5%;
+  /* margin-left: auto; */
+  margin-right: auto;
+  max-width: 1000px;
+  background-color: var(--white);
 }
 
 .header {
-    margin-top: 1.6rem;
+  margin-top: 1.6rem;
+  background-color: var(--white);
 }
 
 .cover {
-    max-height: 70vh;
-    overflow: hidden;
+  max-height: 70vh;
+  overflow: hidden;
 }
 
 .mainImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .meta {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
+  margin: 2rem 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
 }
 
 .metaIn {
-    display: block;
+  display: block;
+  border: 0.5px dotted var(--black);
+  padding: 1rem;
 }
 
 .metaBlock {
-    margin-bottom: 1rem;
-    transition: opacity 0.3s ease-in-out;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .share {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .share button {
-    border: 0.5px dotted var(--black);
-    padding: 3px 4px 0px;
-    margin: 0px 5px;
-    background-color: transparent;
-    border-radius: 50px;
+  padding: 3px 4px 0px;
+  margin: 0px 5px;
+  background-color: var(--highlight-yellow);
+  border-radius: 50px;
+  border: none;
 }
 
 .share button img,
 .share button svg {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin: 2px;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 2px;
 }
 
 .share button:hover {
-    background-color: var(--purple);
-    cursor: pointer;
+  background-color: var(--khaki);
+  cursor: pointer;
 }
 
 .cat {
-    margin: 0px 2px;
+  margin: 0px 2px;
 }
 
 .cat:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .issue {
-    border: 0.5px dotted var(--black);
-    border-radius: 50px;
-    padding: 5px 10px;
-    margin: 0px 5px;
-    transition: all ease-in-out;
-    background-color: #0066cc;
+  border: 0.5px dashed var(--black);
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  transition: all ease-in-out;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .issue a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .issue:hover {
-    cursor: pointer;
-    transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.issueLabel {
+  font-family: var(--playfair);
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .history {
-    border: 0.5px dotted var(--black);
-    border-radius: 50px;
-    padding: 5px 10px;
-    margin: 0px 5px;
+  border: 0.5px dotted var(--black);
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 0px 5px;
 }
 
 .history:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .article p {
-    margin-bottom: 1.6rem;
+  margin-bottom: 1.6rem;
 }
 
 .article {
   background: var(--white);
-  margin: 2rem auto;
   line-height: 1.7;
   font-size: 1.7rem;
   color: var(--black);
@@ -129,25 +130,45 @@
 }
 
 .article a {
-  color: #0066cc;
+  color: var(--green);
   text-decoration: underline;
 }
 
-.imageWrapper {
+.article blockquote {
+  background-color: var(--black);
+  font-size: 1.9rem;
+  color: var(--white);
+  padding: 3rem;
   margin: 2rem 0;
+  transition: transform 0.1s ease-in-out;
+}
+
+.article blockquote:hover {
+  transform: scale(1.02);
+}
+
+.wrapper :global(.essentials-grid) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+}
+
+.article :global(figure figcaption) {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--purple);
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+.imageWrapper {
+  margin: 2rem 0 0;
   text-align: center;
 }
 
 .image {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
-}
-
-.caption {
-  font-size: 0.9rem;
-  color: #777;
-  margin-top: 0.5rem;
 }
 
 .copiedPopover {
@@ -161,7 +182,155 @@
 }
 
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  75% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.storyMetaCard {
+  background-color: var(--white);
+  padding: 1.2rem 1.6rem;
+  border: 1px dotted var(--black);
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.storyMetaCard p {
+  margin: 0;
+}
+
+.storyMetaCard a {
+  color: var(--issue-color);
+}
+
+.storyChannel,
+.storyIssue {
+  font-weight: 600;
+}
+
+.storyIssue a {
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.storyIssue:hover {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.storyReadMore {
+  background-color: var(--white);
+  padding: 1.2rem 1.6rem;
+  border: 1px dotted var(--black);
+  font-size: 1.4rem;
+  line-height: 1.5;
+  border-top: none;
+}
+
+.readMoreGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.readMoreCard {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.readMoreCard h5 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.footerByline {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.readingContainer {
+  height: 100vh;
+  width: 4rem;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: var(--purple);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  border: 0.5px dotted var(--black);
+  justify-content: flex-end;
+}
+
+.storySupport {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  background-color: var(--gray);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.revisionBanner {
+  background: #fff7d6;
+  border: 1px solid #e6d28a;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+}
+
+.revisionBanner code {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+}
+
+.revisionBackLink {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+
+/* Inline revision highlight 
+.inlineRevision {
+  position: relative;
+  background: rgba(255, 200, 0, 0.35);
+  outline: 2px solid red;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.inlineRevision:hover {
+  background: linear-gradient(
+    transparent 55%,
+    rgba(255, 210, 90, 0.7) 55%
+  );
+}*/
+
+/* Optional: tiny marker on hover */
+.inlineRevision::after {
+  content: "•";
+  position: absolute;
+  right: -0.6em;
+  top: 0;
+  font-size: 0.6em;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.inlineRevision:hover::after {
+  opacity: 1;
 }

@@ -2,11 +2,30 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Share.module.css";
 
-const ShareBox: React.FC = () => {
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+const Share: React.FC<{ onCopy?: (url: string) => void }> = ({ onCopy }) => {
+  const currentUrl =
+    typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <div className={styles.box}>
+       <button
+        id="copyButton"
+        onClick={() => {
+          if (onCopy) onCopy(currentUrl);
+        }}
+      >
+        <img src="/link.svg" width="20" height="20" alt="" />
+      </button>
+      <Link href={`https://wa.me/?text=Check this out!&url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
+        <div className={styles.icon}>
+          <img
+            alt="Share on WhatsApp"
+            draggable="false"
+            loading="lazy"
+            src="/whatsapp.svg"
+          />
+        </div>
+      </Link>
       <Link href={`https://bsky.app/share?text=Check this out!&url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
         <div className={styles.icon}>
           <img
@@ -53,4 +72,4 @@ const ShareBox: React.FC = () => {
   );
 };
 
-export default ShareBox;
+export default Share;

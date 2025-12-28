@@ -21,5 +21,5 @@ export default async function Story({ params }: StoryPageProps) {
     );
   }
 
-  return <StoryPage post={post} />;
+  return <StoryPage post={post} relatedPosts={posts} />;
 }

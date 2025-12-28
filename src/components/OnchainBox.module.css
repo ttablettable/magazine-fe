@@ -1,0 +1,39 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    border-top: 0.5px dotted var(--black);
+}
+
+.box button {
+    margin: 0.44rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.memo {
+    position: absolute;
+    top: 300px;
+    left: 3rem;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px dotted var(--black);
+    padding: 0.44rem;
+    background: var(--green);
+    box-shadow: var(--shadow);
+}
+
+.memo button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0.44rem 0 0;
+}
+
+.mintButton {
+    width: 3rem;
+    height: 3rem;
+}
+
+.txButton {
+    width: 100%;
+    padding: 0.44rem;
+    margin-top: 0;
+}

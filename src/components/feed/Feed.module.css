@@ -14,24 +14,18 @@
   }
 }
 
-.fullItem a {
+.fullItem {
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 2px;
+  gap: 1rem;
+  border: 0.5px solid var(--gray);
+  transition: all 0.2s ease;
 }
 
-.fullItem a:hover {
+.fullItem:hover {
   transform: scale(1.01);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-}
-
-.post {
-  border-bottom: 0.5px dashed #e0e0e0;
-  padding-bottom: 1.5rem;
-  cursor: pointer;
-  padding: 5px;
+  box-shadow: var(--shadow);
 }
 
 .cover {
@@ -53,7 +47,6 @@
 
 .intro {
   font-size: 1rem;
-  color: #444;
   margin-bottom: 0.75rem;
 }
 
@@ -65,7 +58,7 @@
 }
 
 .date {
-  color: #777;
+  color: var(--purple);
   font-size: 0.9rem;
 }
 
@@ -73,6 +66,6 @@
   display: flex;
   width: fit-content;
   flex-direction: row;
-  color: #555;
+  color: var(--purple);
   font-size: 0.95rem;
 }

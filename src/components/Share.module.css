@@ -1,13 +1,7 @@
 .box {
-    position: fixed;
-    right: 0;
-    bottom: 25%;
-    background-color: var(--purple);
-    z-index: 20;
-    width: auto;
     display: flex;
-    flex-direction: row;
-    border: 0.5px dotted var(--black);
+    flex-direction: column;
+    border-top: 0.5px dotted var(--black);
 }
 
 .icon {
@@ -15,19 +9,24 @@
     padding: 5px;
     width: 3rem;
     justify-items: center;
-    left: 0px;
     transition: transform 0.3s ease;
-    margin: 0.11rem 0.44rem;
+    margin: 0.44rem;
 }
 
 .icon img,
 .icon svg {
-    max-width: 90%;
+    max-width: 100%;
     transition: transform 0.3s ease;
 }
 
+.box button {
+    margin: 0.44rem;
+    width: 3rem;
+    height: 3rem;
+}
+
 .icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 .icon img:hover,

@@ -1,9 +1,9 @@
 .hoverCardContent {
     z-index: 50;
     background-color: var(--highlight-pink);
-    padding: 5px;
+    padding: 5px 10px;
     color: var(--white); 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     outline: none;
   
     animation: fadeIn 200ms ease-in-out;

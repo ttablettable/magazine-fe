@@ -4,8 +4,7 @@
   padding: 2rem;
   gap: 30px;
   margin-top: 53px;
-  background-image: linear-gradient(to bottom, var(--white) 85%, rgba(255, 255, 255, 0));
-  margin-bottom: var(--margin-bottom);
+  background-color: var(--white);
 }
 
 .main ol {
@@ -28,16 +27,58 @@
   font-weight: 600;
 }
 
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  text-align: center;
+}
+
+.header h2 {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 200;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.header p {
+  text-align: center;
+  font-style: italic;
+}
+
 .people {
-  max-width: 1000px;
+  max-width: var(--max-width);
+}
+
+.people h4 {
+  margin: 1rem 0;
+  color: var(--black);
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.people p {
+  margin: 0 0 1rem 0;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--black);
 }
 
 .peepsImg {
-  max-width: 250px;
+  width: 10rem;
+}
+
+.roles {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--black);
 }
 
 .dates {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: var(--mono);
   font-size: 0.8em;
   color: var(--khaki);
 }

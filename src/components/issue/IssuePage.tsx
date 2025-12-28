@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import Navigation from "@/components/navigation/Navigation";
-import Footer from "@/components/layout/Footer";
+import React, { useState } from "react";
 import styles from "./IssuePage.module.css";
 import Link from "next/link";
 import { IssueMeta } from "@/content/issue";
+import AspectRatioImage from "@/components/ui/AspectRatioImage";
+import AuthorList from "../AuthorList";
 
 type Post = {
   slug: string;
@@ -13,6 +13,7 @@ type Post = {
   authors: string[];
   issue?: string;
   channel?: string;
+  keyImage?: string;
 };
 
 interface IssuePageProps {
@@ -25,14 +26,13 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
   if (posts.length === 0)
     return (
       <div className={styles.page}>
-        <Navigation />
         <main className={styles.main}>
           <h1>Loading {issueMeta.title}...</h1>
         </main>
-        <Footer />
       </div>
     );
 
+  const [open, setOpen] = useState(true);
   const cover = posts.find((p) => p.channel === "cover");
   const interviews = posts.filter((p) => p.channel === "interview");
   const essays = posts.filter((p) => p.channel === "idea");
@@ -40,9 +40,7 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
 
   return (
     <div className={styles.page}>
-      <Navigation />
-
-      <main className={styles.main}>
+      <div className={styles.main}>
         {/* HEADER */}
         <div
           className={styles.title}
@@ -61,8 +59,13 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
         {/* COVER STORY */}
         {cover && (
           <section id="cover" className={styles.cover}>
-            <h2>Cover Story</h2>
             <article>
+              <AspectRatioImage
+                src={cover.keyImage || ""}
+                alt={cover.headline}
+                ratio={16 / 9}
+                className={styles.mainImg}
+              />
               <Link href={`/story/${cover.slug}`}>
                 <h3>{cover.headline}</h3>
               </Link>
@@ -70,9 +73,7 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
               {cover.authors?.length > 0 && (
                 <p>
                   Written by{" "}
-                  <Link href={`/people/${cover.authors[0]}`}>
-                    {cover.authors[0].replace(/-/g, " ")}
-                  </Link>
+                  <AuthorList authors={cover.authors} />
                 </p>
               )}
             </article>
@@ -81,25 +82,31 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
 
         {/* TABLE OF CONTENTS */}
         <div className={styles.header}>
-          <h2>Index</h2>
-          <div className={styles.grid}>
-            {posts.map((story) => (
-              <div key={story.slug} className={styles.story}>
-                <h4>{story.channel}</h4>
-                <h3>
-                  <Link href={`/story/${story.slug}`}>{story.headline}</Link>
-                </h3>
-                {story.authors?.length > 0 && (
-                  <p>
-                    Written by{" "}
-                    <Link href={`/people/${story.authors[0]}`}>
-                      {story.authors[0].replace(/-/g, " ")}
-                    </Link>
-                  </p>
-                )}
-              </div>
-            ))}
+          <div onClick={() => setOpen(!open)} className={styles.indexToggle}>
+            <h2>Index</h2>
+            <span className={open ? styles.caretOpen : styles.caretClosed}>
+              ▼
+            </span>
           </div>
+
+          {open && (
+            <div className={styles.grid}>
+              {posts.map((story) => (
+                <div key={story.slug} className={styles.story}>
+                  <h4>{story.channel}</h4>
+                  <h3>
+                    <Link href={`/story/${story.slug}`}>{story.headline}</Link>
+                  </h3>
+                  {story.authors?.length > 0 && (
+                    <p>
+                      Written by{" "}
+                      <AuthorList authors={story.authors} />
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* INTERVIEWS */}
@@ -112,12 +119,16 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
                   <Link href={`/story/${post.slug}`}>
                     <h3>{post.headline}</h3>
                   </Link>
+                  <AspectRatioImage
+                    src={post.keyImage || ""}
+                    alt={post.headline}
+                    ratio={5 / 4}
+                    className={styles.mainImg}
+                  />
                   {post.authors?.length > 0 && (
                     <p>
                       Written by{" "}
-                      <Link href={`/people/${post.authors[0]}`}>
-                        {post.authors[0].replace(/-/g, " ")}
-                      </Link>
+                      <AuthorList authors={post.authors} />
                     </p>
                   )}
                   {post.intro && <p>{post.intro}</p>}
@@ -134,15 +145,19 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
             <div className={styles.essay}>
               {essays.map((post) => (
                 <article key={post.slug}>
+                  <AspectRatioImage
+                    src={post.keyImage || ""}
+                    alt={post.headline}
+                    ratio={5 / 4}
+                    className={styles.mainImg}
+                  />
                   <Link href={`/story/${post.slug}`}>
                     <h3>{post.headline}</h3>
                   </Link>
                   {post.authors?.length > 0 && (
                     <p>
                       Written by{" "}
-                      <Link href={`/people/${post.authors[0]}`}>
-                        {post.authors[0].replace(/-/g, " ")}
-                      </Link>
+                      <AuthorList authors={post.authors} />
                     </p>
                   )}
                   {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
@@ -159,15 +174,19 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
             <div className={styles.column}>
               {columns.map((post) => (
                 <article key={post.slug}>
+                  <AspectRatioImage
+                    src={post.keyImage || ""}
+                    alt={post.headline}
+                    ratio={5 / 4}
+                    className={styles.mainImg}
+                  />
                   <Link href={`/story/${post.slug}`}>
                     <h3>{post.headline}</h3>
                   </Link>
                   {post.authors?.length > 0 && (
                     <p>
                       Written by{" "}
-                      <Link href={`/people/${post.authors[0]}`}>
-                        {post.authors[0].replace(/-/g, " ")}
-                      </Link>
+                      <AuthorList authors={post.authors} />
                     </p>
                   )}
                   {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
@@ -180,11 +199,17 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
         {/* FINE PRINT */}
         <div className={styles.fineprint}>
           <p>
-            TTABLE is licensed under a <Link href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">Creative Commons Attribution–Non
-            Commercial 4.0 International License</Link> that allows readers to read,
-            download, copy, distribute, print, search, or link to the full texts
-            of its articles and allow readers to use them for any other lawful
-            purpose.
+            TTABLE is licensed under a{" "}
+            <Link
+              href="http://creativecommons.org/licenses/by-nc/4.0/"
+              target="_blank"
+            >
+              Creative Commons Attribution–Non Commercial 4.0 International
+              License
+            </Link>{" "}
+            that allows readers to read, download, copy, distribute, print,
+            search, or link to the full texts of its articles and allow readers
+            to use them for any other lawful purpose.
           </p>
           <p>
             <strong>ISSN 2375-4982</strong>
@@ -221,9 +246,7 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
             <strong>Web Development:</strong> Cobalt
           </p>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 };

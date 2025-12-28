@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "../components/Providers";
+import Navigation from "@/components/navigation/Navigation";
+import Footer from "@/components/layout/Footer";
+
+import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
   title: 'TABLE',
@@ -9,13 +13,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
+      <body className={styles.sitePage}>
+        <Providers>
+          <Navigation />
+
+          <main className={styles.siteMain}>
+            {children}
+          </main>
+
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

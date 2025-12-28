@@ -15,9 +15,10 @@ import Login from "../Login";
 const Navigation: React.FC = () => {
   return (
     <header className={styles.header}>
+      <div className={styles.navbarAction}>
       <ContextMenu>
         <ContextMenuTrigger asChild>
-          <div className={styles.navButton}>
+          <div className={styles.navLogo}>
             <Link href="/">
               <div className={styles.navLinks}>
                 <img
@@ -51,9 +52,10 @@ const Navigation: React.FC = () => {
         </Link>
       </div>
       <div className={styles.navButton}>
-        <Link href="/">
+        <Link href="/picks">
           <div className={styles.navLinks}>Our Picks</div>
         </Link>
+      </div>
       </div>
       </div>
 

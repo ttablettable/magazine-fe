@@ -1,6 +1,5 @@
 import styles from "./page.module.css";
 import Footer from "@/components/layout/Footer";
-import Navigation from "@/components/navigation/Navigation";
 import Feed from "@/components/feed/Feed";
 import BlockquoteCarousel from "@/components/BlockquoteCarousel";
 import Link from "next/link";
@@ -13,15 +12,16 @@ export default async function Home() {
   const quotes = getAllQuotes(posts);
 
   return (
-    <div className={styles.page}>
-      <Navigation />
-      <main className={styles.main}>
+      <div className={styles.main}>
+        <div className={styles.header}>
+          <h1>Table</h1>
+          <h2>Quarterly</h2>
+          <p>Stories, criticism, and experiments in art. Revised in public.</p>
+        </div>
         {quotes.length > 0 && (
           <BlockquoteCarousel quotes={quotes} />
         )}
         <Feed posts={posts} />
-      </main>
-      <Footer />
-    </div>
+      </div>
   );
 }

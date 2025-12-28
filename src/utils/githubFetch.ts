@@ -9,34 +9,14 @@ export interface GitHubPost extends ParsedMarkdown {
   lastModified: string;
 }
 
-export async function fetchArchivePosts(): Promise<GitHubPost[]> {
-  const query = `
-    query {
-      repository(owner: "${OWNER}", name: "${REPO}") {
-        object(expression: "main:archive") {
-          ... on Tree {
-            entries {
-              name
-              type
-              object {
-                ... on Blob {
-                  text
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
+async function githubRequest<T>(query: string, variables?: Record<string, any>): Promise<T> {
   const res = await fetch(GITHUB_API_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({ query, variables }),
     next: { revalidate: 120 },
   });
 
@@ -47,17 +27,59 @@ export async function fetchArchivePosts(): Promise<GitHubPost[]> {
   }
 
   const json = await res.json();
-  const entries = json.data?.repository?.object?.entries ?? [];
+  return json.data;
+}
+
+async function fetchPostsFromFolder(folder: "live" | "archive"): Promise<GitHubPost[]> {
+  const query = `
+    query ($owner: String!, $repo: String!, $expression: String!) {
+      repository(owner: $owner, name: $repo) {
+        object(expression: $expression) {
+          ... on Tree {
+            entries {
+              name
+              type
+              object {
+                ... on Blob {
+                  text
+                  commitResourcePath
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await githubRequest<{
+    repository: {
+      object: {
+        entries: {
+          name: string;
+          type: "blob" | "tree";
+          object: { text: string; commitResourcePath: string } | null;
+        }[];
+      } | null;
+    } | null;
+  }>(query, {
+    owner: OWNER,
+    repo: REPO,
+    expression: `main:${folder}`,
+  });
+
+  const entries = data?.repository?.object?.entries ?? [];
 
   const posts: GitHubPost[] = entries
-    .filter((entry: any) => entry.type === "blob" && entry.name.endsWith(".md"))
-    .map((entry: any) => {
-      const slug = entry.name.replace(".md", "");
-      const parsed = parseMarkdown(entry.object.text, slug);
+    .filter((entry) => entry.type === "blob" && entry.name.endsWith(".md") && entry.object?.text)
+    .map((entry) => {
+      const slug = entry.name.replace(/\.md$/, "");
+      const parsed = parseMarkdown(entry.object!.text, slug);
 
       return {
         ...parsed,
-        path: `archive/${entry.name}`,
+        path: `${folder}/${entry.name}`,
+        // If you want: derive lastModified from commitResourcePath later.
         lastModified: new Date().toISOString(),
       };
     });
@@ -65,4 +87,48 @@ export async function fetchArchivePosts(): Promise<GitHubPost[]> {
   return posts.sort(
     (a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime()
   );
+}
+
+export async function fetchArchivePosts(): Promise<GitHubPost[]> {
+  return fetchPostsFromFolder("archive");
+}
+
+export async function fetchLivePosts(): Promise<GitHubPost[]> {
+  return fetchPostsFromFolder("live");
+}
+
+export async function fetchPostBySlug(
+  slug: string,
+  folder: "live" | "archive"
+): Promise<GitHubPost | null> {
+  const query = `
+    query ($owner: String!, $repo: String!, $expression: String!) {
+      repository(owner: $owner, name: $repo) {
+        object(expression: $expression) {
+          ... on Blob {
+            text
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await githubRequest<{
+    repository: { object: { text: string } | null } | null;
+  }>(query, {
+    owner: OWNER,
+    repo: REPO,
+    expression: `main:${folder}/${slug}.md`,
+  });
+
+  const blob = data?.repository?.object;
+  if (!blob?.text) return null;
+
+  const parsed = parseMarkdown(blob.text, slug);
+
+  return {
+    ...parsed,
+    path: `${folder}/${slug}.md`,
+    lastModified: new Date().toISOString(),
+  };
 }

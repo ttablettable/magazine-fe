@@ -5,9 +5,9 @@
 }
 
 .button {
-    font-family: var(--vollkorn);
+    font-family: var(--playfair);
     padding: 1em;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     cursor: pointer;
     background-color: var(--white);
     border: 2px dotted var(--highlight-yellow);
