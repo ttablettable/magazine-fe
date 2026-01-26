@@ -7,7 +7,6 @@ import Navigation from "../../components/navigation/Navigation";
 const AboutPage: React.FC = () => {
     return (
     <div className={styles.page}>
-        <Navigation />
       <main className={styles.main}>
         <div>
         <section id="hero">
@@ -116,7 +115,6 @@ const AboutPage: React.FC = () => {
             </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -6,49 +6,58 @@
     position: fixed;
     top: 0;
     z-index: 30;
-    background-color: var(--highlight-yellow);
+    /* background-color: var(--highlight-yellow); */
     width: 100%;
     /* border-bottom: 1px solid var(--black); */
-}
-
-.navbar {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
 }
 
 .navbarAction {
     display: flex;
     flex-direction: row;
     gap: 5px;
+    width: 100%;
 }
 
 .navLogo {
-    background-color: transparent;
+    background-color: var(--white);
     padding: 5px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border: 1px solid var(--black);
+    height: calc(4rem - 20px);
+    width: calc(4rem - 20px);
 }
 
 .navLogo img {
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 100%;
     align-self: center;
 }
 
-.navButton {
-    padding: 0.25em 1em;
-    font-size: 1.2rem;
-}
-  
-.navButton:hover {
-    background-color: var(--highlight-yellow);
-}
-  
-.navLinks {
-    padding: 10px 5px;
+.navbar {
     display: flex;
-    gap: auto;
+    flex-direction: row-reverse;
+    gap: 10px;
+    width: 100%;
+}
+
+.navbarItem {
+    padding: 0.25em;
+    font-size: 1.2rem;
     align-items: center;
+    border: 0.75px solid var(--black);
+    transition: transform 0.2s;
+}
+  
+.navbarItem:hover {
+    background-color: var(--mercury);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.navbarItem a:hover {
+    text-decoration: none;
+    color: var(--black);
 }

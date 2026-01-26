@@ -48,6 +48,12 @@
     transition: all 0.3s ease;
 }
 
+.footerIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .footerIcon:hover {
     scale: 1.2;
     cursor: pointer;
