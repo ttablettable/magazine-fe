@@ -294,12 +294,12 @@ export default function StoryPage({
 
           <div className={styles.meta}>
             <div className={styles.metaIn}>
-              <span>
+              <div><span>
                 <b>Written by: </b>
               </span>
               <span>
                 <AuthorList authors={post.authors} />
-              </span>{" "}
+              </span>{" "}</div>
               <span className={styles.issue}>
                 for the{" "}
                 <Link

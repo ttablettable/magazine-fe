@@ -2,52 +2,64 @@ import React from "react";
 import Link from "next/link";
 import styles from "./Share.module.css";
 
-const Share: React.FC<{ onCopy?: (url: string) => void }> = ({ onCopy }) => {
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.href : "";
+const Share: React.FC<{ url: string; onCopy?: (url: string) => void }> = ({
+  url,
+  onCopy,
+}) => {
+  const text = "Leaving this here.";
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTextWithUrl = encodeURIComponent(`${text} ${url}`);
 
   return (
     <div className={styles.box}>
-       <button
-        id="copyButton"
+      {/* Copy */}
+      <button
         onClick={() => {
-          if (onCopy) onCopy(currentUrl);
+          navigator.clipboard.writeText(url);
+          onCopy?.(url);
         }}
       >
-        <img src="/link.svg" width="20" height="20" alt="" />
+        <img src="/link.svg" width="20" height="20" alt="Copy link" />
       </button>
-      <Link href={`https://wa.me/?text=Check this out!&url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
-        <div className={styles.icon}>
-          <img
-            alt="Share on WhatsApp"
-            draggable="false"
-            loading="lazy"
-            src="/whatsapp.svg"
-          />
-        </div>
-      </Link>
-      <Link href={`https://bsky.app/share?text=Check this out!&url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
-        <div className={styles.icon}>
-          <img
-            alt="Share on Bluesky"
-            draggable="false"
-            loading="lazy"
-            src="/bluesky-1.svg"
-          />
-        </div>
-      </Link>
-      <Link href={`farcaster://share?text=Check this out!&url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
-        <div className={styles.icon}>
-          <img
-            alt="Share on Farcaster"
-            draggable="false"
-            loading="lazy"
-            src="/fc-transparent-purple.svg"
-          />
-        </div>
-      </Link>
-      <Link href={`https://www.reddit.com/submit?url=${encodeURIComponent(currentUrl)}&title=Check this out!`} target="_blank" rel="noopener noreferrer">
-        <div className={styles.icon}>
+
+      {/* WhatsApp */}
+      <a
+        href={`https://wa.me/?text=${encodedTextWithUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.icon}
+      >
+        <img src="/whatsapp.svg" alt="Share on WhatsApp" />
+      </a>
+
+      {/* Bluesky (FIXED) */}
+      <a
+        href={`https://bsky.app/intent/compose?text=${encodedTextWithUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.icon}
+      >
+        <img src="/bluesky-1.svg" alt="Share on Bluesky" />
+      </a>
+
+      {/* Farcaster (robust) */}
+      <a
+        href={`https://warpcast.com/~/compose?text=${encodedTextWithUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.icon}
+      >
+        <img src="/fc-transparent-purple.svg" alt="Share on Farcaster" />
+      </a>
+      <Link
+        href={`https://www.reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent(
+          text,
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.icon}
+      >
+        
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <circle cx="8.5" cy="12.5" r="1.5"></circle>
             <circle cx="15.5" cy="12.5" r="1.5"></circle>
@@ -58,15 +70,18 @@ const Share: React.FC<{ onCopy?: (url: string) => void }> = ({ onCopy }) => {
             ></path>
             <path d="M19,2c-0.677,0-1.273,0.338-1.635,0.853l-2.438-0.488c-1.476-0.294-2.957,0.561-3.434,1.993l-1.262,3.785	C10.804,8.054,11.393,8,12,8c0.129,0,0.254,0.012,0.382,0.016l1.009-3.025c0.159-0.479,0.652-0.764,1.145-0.665l2.666,0.533	C17.524,5.532,18.205,6,19,6c1.105,0,2-0.895,2-2C21,2.895,20.105,2,19,2z"></path>
           </svg>
-        </div>
+        
       </Link>
-      <Link href={`mailto:?subject=Check this out!&body=I thought you might find this interesting: ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
-        <div className={styles.icon}>
+      <Link
+        href={`mailto:?subject=${encodeURIComponent(
+          text,
+        )}&body=${encodeURIComponent(`I thought you might like this:\n\n${url}`)}`}
+        className={styles.icon}
+      >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <rect width="14" height="16" x="5" y="4" opacity=".35"></rect>
             <path d="M19,4l-7,4.99L5,4C3.343,4,2,5.343,2,7v10c0,1.657,1.343,3,3,3V7.707l7,4.959l7-4.959V20c1.657,0,3-1.343,3-3V7	C22,5.343,20.657,4,19,4z"></path>
           </svg>
-        </div>
       </Link>
     </div>
   );

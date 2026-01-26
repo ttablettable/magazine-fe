@@ -23,9 +23,8 @@
   --highlight-purple: #72589f;
   --highlight-pink: #be629f;
 
-  --margin-bottom: 350px;
   --max-width: 1000px;
-  --fade-out: linear-gradient(to bottom, var(--white) 85%, rgba(255, 255, 255, 0));
+  --margin-bottom: 27rem;
 
   --shadow:
     0 8px 20px rgba(0, 0, 0, 0.15),

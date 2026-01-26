@@ -6,9 +6,7 @@
     position: fixed;
     top: 0;
     z-index: 30;
-    /* background-color: var(--highlight-yellow); */
     width: 100%;
-    /* border-bottom: 1px solid var(--black); */
 }
 
 .navbarAction {
@@ -43,15 +41,16 @@
 }
 
 .navbarItem {
+    background: var(--white);
     padding: 0.25em;
     font-size: 1.2rem;
     align-items: center;
     border: 0.75px solid var(--black);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
 }
   
 .navbarItem:hover {
-    background-color: var(--mercury);
+    background: var(--mercury);
     cursor: pointer;
     transform: scale(1.05);
     transition: transform 0.2s;

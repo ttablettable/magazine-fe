@@ -24,9 +24,10 @@ export default function RootLayout({
 
           <main className={styles.siteMain}>
             {children}
+            <Footer />
           </main>
 
-          <Footer />
+          
         </Providers>
       </body>
     </html>

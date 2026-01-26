@@ -1,14 +1,13 @@
 .page {
   min-height: 100svh;
+  background: var(--white);
 }
 
 .main {
-  margin-top: 6.5%;
+  margin-top: 66px;
   width: 87.5%;
   padding-left: 12.5%;
-  /* margin-left: auto; */
   margin-right: auto;
-  background-color: var(--white);
 }
 
 .title {
@@ -63,7 +62,9 @@
 .story {
   border-top: 0.5px solid var(--black);
   padding: 0.5rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .story:hover {
@@ -143,6 +144,7 @@
   margin-top: 2rem;
   margin-left: -50vw;
   margin-right: -50vw;
+  margin-bottom: var(--margin-bottom);
   background-color: var(--purple);
   padding: 40px 20px;
   border-top: 0.5px solid var(--black);
@@ -152,10 +154,41 @@
 
 .fineprint p,
 .fineprint h6 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: var(--mono);
   margin-bottom: 0.5rem;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .title h1 {
+    font-size: 3rem;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: max-height 0.25s ease;
+  }
+
+  .intGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+  }
+
+  .essay {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 }

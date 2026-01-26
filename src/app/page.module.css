@@ -1,10 +1,16 @@
+.page {
+  padding: 1rem 0.25rem;
+  margin-bottom: var(--margin-bottom);
+  background: var(--white);
+}
+
 .main {
   display: flex;
   flex-direction: column;
   padding: 2rem;
   gap: 30px;
   margin-top: 53px;
-  background-color: var(--white);
+  background: var(--white);
 }
 
 .main ol {
@@ -109,11 +115,6 @@
 }
 
 @media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
   .main {
     align-items: center;
   }

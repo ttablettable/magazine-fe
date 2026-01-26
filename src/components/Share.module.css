@@ -6,7 +6,6 @@
 
 .icon {
     display: flex;
-    padding: 5px;
     width: 3rem;
     justify-items: center;
     transition: transform 0.3s ease;
