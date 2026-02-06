@@ -64,6 +64,7 @@ a:hover {
 
 h1, h2, h3, h4 {
   font-family: var(--playfair);
+  font-weight: 200;
 }
 
 h1 {
@@ -87,6 +88,11 @@ h6 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-transform: uppercase;
   margin-bottom: 1rem;
+}
+
+
+p {
+  font-size: 1.1rem;
 }
 
 hr {
@@ -188,8 +194,4 @@ button:hover {
   padding: 2px 4px;
   border-radius: 4px;
   font-weight: 600;
-}
-
-p {
-  font-size: 1.1rem;
 }

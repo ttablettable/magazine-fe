@@ -5,11 +5,15 @@ const OWNER = "ttablettable";
 const REPO = "content";
 
 export interface GitHubPost extends ParsedMarkdown {
+  slug: string;
   path: string;
   lastModified: string;
 }
 
-async function githubRequest<T>(query: string, variables?: Record<string, any>): Promise<T> {
+async function githubRequest<T>(
+  query: string,
+  variables?: Record<string, any>,
+): Promise<T> {
   const res = await fetch(GITHUB_API_URL, {
     method: "POST",
     headers: {
@@ -30,7 +34,9 @@ async function githubRequest<T>(query: string, variables?: Record<string, any>):
   return json.data;
 }
 
-async function fetchPostsFromFolder(folder: "live" | "archive"): Promise<GitHubPost[]> {
+async function fetchPostsFromFolder(
+  folder: "live" | "archive",
+): Promise<GitHubPost[]> {
   const query = `
     query ($owner: String!, $repo: String!, $expression: String!) {
       repository(owner: $owner, name: $repo) {
@@ -71,21 +77,27 @@ async function fetchPostsFromFolder(folder: "live" | "archive"): Promise<GitHubP
   const entries = data?.repository?.object?.entries ?? [];
 
   const posts: GitHubPost[] = entries
-    .filter((entry) => entry.type === "blob" && entry.name.endsWith(".md") && entry.object?.text)
-    .map((entry) => {
+    .filter(
+      (entry) =>
+        entry.type === "blob" &&
+        entry.name.endsWith(".md") &&
+        entry.object?.text,
+    )
+    .map((entry): GitHubPost => {
       const slug = entry.name.replace(/\.md$/, "");
       const parsed = parseMarkdown(entry.object!.text, slug);
 
       return {
         ...parsed,
+        slug, // explicitly enforce slug
         path: `${folder}/${entry.name}`,
-        // If you want: derive lastModified from commitResourcePath later.
         lastModified: new Date().toISOString(),
       };
     });
 
   return posts.sort(
-    (a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime()
+    (a, b) =>
+      new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime(),
   );
 }
 
@@ -99,7 +111,7 @@ export async function fetchLivePosts(): Promise<GitHubPost[]> {
 
 export async function fetchPostBySlug(
   slug: string,
-  folder: "live" | "archive"
+  folder: "live" | "archive",
 ): Promise<GitHubPost | null> {
   const query = `
     query ($owner: String!, $repo: String!, $expression: String!) {

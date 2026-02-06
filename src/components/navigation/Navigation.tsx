@@ -43,7 +43,7 @@ const Navigation: React.FC = () => {
         </ContextMenu>
         <div className={styles.navbar}>
           <div className={styles.navbarItem}>
-            <Link href="/">
+            <Link href="/hot">
               Most Read
             </Link>
           </div>
