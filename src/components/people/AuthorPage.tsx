@@ -16,6 +16,7 @@ import styles from "./AuthorPage.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import type { Activity } from "@/components/activity/activity.types";
+import { Facehash } from "facehash";
 
 type AuthorPageProps = {
   authorSlug: string;
@@ -91,10 +92,12 @@ export default function AuthorPage({
             <div>
               <div className={styles.peepsImg}>
                 {person.avatar && (
-                  <AspectRatioImage
-                    src={person.avatar.src}
-                    alt={person.avatar.alt ?? person.displayName}
-                    ratio={person.avatar.ratio ?? 1 / 1}
+                  <Facehash 
+                    name={person.displayName} 
+                    intensity3d="dramatic" 
+                    colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+                    size={90}
+                    enableBlink
                   />
                 )}
               </div>

@@ -42,7 +42,7 @@
 
 .navbarItem {
     background: var(--white);
-    padding: 0.25em;
+    padding: 0.45em 1em 0em;
     font-size: 1.2rem;
     align-items: center;
     border: 0.75px solid var(--black);

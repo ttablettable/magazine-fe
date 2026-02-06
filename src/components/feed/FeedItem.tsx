@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./Feed.module.css";
 import { GitHubPost } from "@/utils/githubFetch";
 import AuthorList from "../AuthorList";
 import AspectRatioImage from "../ui/AspectRatioImage";
+import { motion } from "framer-motion";
 
 interface FeedItemProps {
   post: GitHubPost;
@@ -26,22 +29,59 @@ export default function FeedItem({ post }: FeedItemProps) {
         <Link href={`/story/${post.slug}`}>
           <h2>{post.headline}</h2>
         </Link>
-        <div className={styles.meta}>
-          {post.published && (
-            <time className={styles.date}>
-              {new Date(post.published).toLocaleDateString()}
-            </time>
-          )}
-          {post.authors.length > 0 && (
-            <p className={styles.authors}>
-              <AuthorList authors={post.authors} />
-            </p>
-
-          )}
-        </div>
         <Link href={`/story/${post.slug}`}>
-          <p className={styles.intro}>{post.intro}</p>
+          <motion.p
+            className={styles.intro}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            {post.intro}
+          </motion.p>
         </Link>
+
+        <div className={styles.meta}>
+          <div className={styles.metaLine}>
+            {post.authors.length > 0 && (
+              <>
+                <AuthorList authors={post.authors} />
+                {post.published && ", "}
+              </>
+            )}
+
+            {post.published ? (
+              <>
+                <time>
+                  {new Date(post.published).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+
+                {post.lastModified && post.lastModified !== post.published && (
+                  <>
+                    {" · Updated "}
+                    <time>
+                      {new Date(post.lastModified).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </time>
+                  </>
+                )}
+              </>
+            ) : post.lastModified ? (
+              <time>
+                {new Date(post.lastModified).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+            ) : null}
+          </div>
+        </div>
       </article>
     </div>
   );

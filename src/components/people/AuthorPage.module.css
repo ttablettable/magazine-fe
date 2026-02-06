@@ -4,6 +4,7 @@
   padding: 2rem;
   gap: 30px;
   margin-top: 53px;
+  margin-bottom: var(--margin-bottom);
   background-color: var(--white);
 }
 

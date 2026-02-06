@@ -10,7 +10,12 @@ export default async function Picks() {
   );
 
   return (
-    <div style={{ marginTop: "60px" }}>
+    <div style={{ 
+      marginTop: "60px",
+      marginBottom: "var(--margin-bottom)",
+      background: "var(--white)",
+      paddingBottom: "0.2rem",
+    }}>
       <Feed posts={featured} />
     </div>
   );

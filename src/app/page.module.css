@@ -54,6 +54,38 @@
   font-style: italic;
 }
 
+.authorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.authorGrid a {
+  color: var(--black);
+  transition: scale 0.2s ease-in-out;
+}
+
+.authorGrid a:hover {
+  text-decoration: underline 2px var(--mercury);
+  scale: 1.05;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorMeta h5 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.authorMeta p {
+  margin: 0;
+  color: var(--quicksand);
+}
+
 .people {
   max-width: var(--max-width);
 }

@@ -1,3 +1,4 @@
+import { Facehash } from "facehash";
 import Link from "next/link";
 
 function slugToName(slug: string) {
@@ -14,6 +15,13 @@ export default function AuthorList({ authors }: { authors: string[] }) {
     <span>
       {authors.map((author, i) => (
         <span key={author}>
+          <Facehash
+            name={author}
+            intensity3d="dramatic"
+            colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+            size={20}
+            enableBlink
+          />
           <Link href={`/people/${author}`}>{slugToName(author)}</Link>
           {i < authors.length - 1 && ", "}
         </span>

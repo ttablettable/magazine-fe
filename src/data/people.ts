@@ -38,10 +38,10 @@ Brian Felix is a multidisciplinary artist and writer working across film, photog
 and software. His practice explores systems, labor, and authorship in networked culture.
     `.trim(),
 
-    avatar: {
+    /* avatar: {
       src: "/people/brian-felix.jpg",
       alt: "Portrait of Brian Felix",
-    },
+    }, */
 
     links: {
       farcaster: "https://farcaster.xyz/chamaquito.eth",

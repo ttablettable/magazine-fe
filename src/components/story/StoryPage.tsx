@@ -298,7 +298,7 @@ export default function StoryPage({
                 <b>Written by: </b>
               </span>
               <span>
-                <AuthorList authors={post.authors} />
+                  <AuthorList authors={post.authors} />
               </span>{" "}</div>
               <span className={styles.issue}>
                 for the{" "}

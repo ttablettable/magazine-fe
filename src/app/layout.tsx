@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "../components/Providers";
+import Script from "next/script";
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/layout/Footer";
 
@@ -21,14 +22,16 @@ export default function RootLayout({
       <body className={styles.sitePage}>
         <Providers>
           <Navigation />
-
           <main className={styles.siteMain}>
             {children}
             <Footer />
           </main>
-
-          
         </Providers>
+        <Script
+          src="https://static.getclicky.com/js"
+          strategy="afterInteractive"
+          data-id={process.env.NEXT_PUBLIC_CLICKY_ID}
+        />
       </body>
     </html>
   );

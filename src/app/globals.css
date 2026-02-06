@@ -189,3 +189,7 @@ button:hover {
   border-radius: 4px;
   font-weight: 600;
 }
+
+p {
+  font-size: 1.1rem;
+}
