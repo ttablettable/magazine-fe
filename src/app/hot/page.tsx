@@ -1,8 +1,7 @@
-'use client'
 import Feed from "@/components/feed/Feed";
+import HotEmpty from "@/components/HotEmpty";
 import { fetchArchivePosts, GitHubPost } from "@/utils/githubFetch";
 import { getMostReadSlugs, MostReadItem } from "@/lib/clicky";
-import { Facehash } from "facehash";
 
 export default async function Hot() {
   const posts: GitHubPost[] = await fetchArchivePosts();
@@ -33,15 +32,8 @@ export default async function Hot() {
         <h2 style={{ marginBottom: "1rem" }}>
           Most Read (Last 7 Days)
         </h2>
-        <p style={{ opacity: 0.6, marginTop: "2rem", marginBottom: "2rem" }}>
-          The week is still unfolding.
-          <Facehash 
-            name="most-read"
-            intensity3d="dramatic"
-            size={150}
-            enableBlink
-          />
-        </p>
+        
+        <HotEmpty />
       </div>
     );
   }
