@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
-  title: "TABLE",
+  title: "TTABLE",
   description: "a digitally-native magazine about art",
 };
 

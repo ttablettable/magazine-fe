@@ -8,7 +8,10 @@ import AspectRatioImage from "../ui/AspectRatioImage";
 import { motion } from "framer-motion";
 
 interface FeedItemProps {
-  post: GitHubPost;
+  post: GitHubPost & {
+    views?: number;
+    trend?: number;
+  };
 }
 
 export default function FeedItem({ post }: FeedItemProps) {
@@ -27,8 +30,22 @@ export default function FeedItem({ post }: FeedItemProps) {
 
       <article className={styles.post}>
         <Link href={`/story/${post.slug}`}>
-          <h2>{post.headline}</h2>
+          <h2>
+            {post.headline}
+            {post.views !== undefined && (
+              <span
+                style={{
+                  fontSize: "0.9rem",
+                  color: "var(--green)",
+                  marginLeft: "0.5rem",
+                }}
+              >
+                {post.trend && post.trend > 0 ? " ↑" : ""}
+              </span>
+            )}
+          </h2>
         </Link>
+
         <Link href={`/story/${post.slug}`}>
           <motion.p
             className={styles.intro}
