@@ -4,7 +4,7 @@ import Feed from "@/components/feed/Feed";
 import BlockquoteCarousel from "@/components/BlockquoteCarousel";
 import Link from "next/link";
 
-import { fetchArchivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts } from "@/lib/githubFetch";
 import { getAllQuotes } from "@/lib/getAllQuotes";
 
 export default async function Home() {

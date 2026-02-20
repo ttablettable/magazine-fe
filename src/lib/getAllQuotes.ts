@@ -1,5 +1,5 @@
 import { extractBlockquotes } from "./extractBlockquotes";
-import { GitHubPost } from "@/utils/githubFetch";
+import { GitHubPost } from "@/lib/githubFetch";
 
 export function getAllQuotes(posts: GitHubPost[]) {
   const quotes: {

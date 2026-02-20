@@ -1,4 +1,4 @@
-import { fetchArchivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts } from "@/lib/githubFetch";
 import { fetchRevisionContent } from "@/utils/fetchRevisions";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import StoryPage from "@/components/story/StoryPage";

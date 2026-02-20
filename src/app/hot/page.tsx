@@ -1,6 +1,6 @@
 import Feed from "@/components/feed/Feed";
 import HotEmpty from "@/components/HotEmpty";
-import { fetchArchivePosts, GitHubPost } from "@/utils/githubFetch";
+import { fetchArchivePosts, GitHubPost } from "@/lib/githubFetch";
 import { getMostReadSlugs, MostReadItem } from "@/lib/clicky";
 
 type HotPost = GitHubPost & {

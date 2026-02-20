@@ -2,7 +2,7 @@
 
 import ActivityFeed from "@/components/activity/ActivityFeed";
 import { buildActivity } from "@/lib/activityBuilder";
-import type { GitHubPost } from "@/utils/githubFetch";
+import type { GitHubPost } from "@/lib/githubFetch";
 import { PEOPLE } from "@/data/people";
 import type { PersonLinkType } from "@/data/people";
 import {
@@ -10,12 +10,8 @@ import {
   HoverCardTrigger,
   HoverCardContent,
 } from "@/components/ui/HoverCard";
-import AspectRatioImage from "@/components/ui/AspectRatioImage";
 import Link from "next/link";
 import styles from "./AuthorPage.module.css";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import type { Activity } from "@/components/activity/activity.types";
 import { Facehash } from "facehash";
 
 type AuthorPageProps = {
@@ -31,52 +27,38 @@ export default function AuthorPage({
 }: AuthorPageProps) {
   const allPosts = [...(livePosts ?? []), ...(archivePosts ?? [])];
 
-  const activity = buildActivity({
-    authorSlug,
-    posts: allPosts,
-  });
-
-  const { slug } = useParams();
-  const person = PEOPLE[slug as string];
-
-  const [activities, setActivities] = useState<Activity[]>([]);
-
-  useEffect(() => {
-    if (!person) {
-      console.warn("[AuthorPage] No person found for slug:", slug);
-      return;
-    }
-
-    async function loadAuthoredActivities() {
-      const authored = allPosts.filter((post) =>
-        post.authors.includes(person.slug)
-      );
-
-      const authoredActivities: Activity[] = authored.map((post) => ({
-        id: `authored-${post.slug}`,
-        type: "authored",
-        title: post.headline,
-        storySlug: post.slug,
-        issue: post.issue,
-        date: post.published ?? post.lastModified,
-      }));
-
-      setActivities(authoredActivities);
-    }
-
-    loadAuthoredActivities();
-  }, [person, slug, allPosts]);
+  const person = PEOPLE[authorSlug];
 
   if (!person) {
     return (
       <div className={styles.page}>
         <main className={styles.main}>
-          <h1>{slug}</h1>
+          <h1>{authorSlug}</h1>
           <p>Profile not claimed yet.</p>
         </main>
       </div>
     );
   }
+
+  /**
+   * Normalize dates so Activity always receives Date | null
+   */
+  const normalizedPosts = allPosts.map((post) => ({
+    ...post,
+    normalizedDate: post.published
+      ? new Date(post.published)
+      : post.lastModified
+      ? new Date(post.lastModified)
+      : null,
+  }));
+
+  const activity = buildActivity({
+    authorSlug,
+    posts: normalizedPosts.map((post) => ({
+      ...post,
+      date: post.normalizedDate,
+    })),
+  });
 
   const linkIcons: Record<PersonLinkType, string> = {
     farcaster: "/fc-transparent-black.svg",
@@ -85,65 +67,67 @@ export default function AuthorPage({
   };
 
   return (
-    <>
-      <div className={styles.main}>
-        <div className={styles.header}>
-          <div className={styles.headerInfo}>
-            <div>
-              <div className={styles.peepsImg}>
-                {person.avatar && (
-                  <Facehash 
-                    name={person.displayName} 
-                    intensity3d="dramatic" 
-                    colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
-                    size={90}
-                    enableBlink
-                  />
-                )}
-              </div>
-              <p className={styles.roles}>{person.roles.join(" · ")}</p>
+    <div className={styles.main}>
+      <div className={styles.header}>
+        <div className={styles.headerInfo}>
+          <div>
+            <div className={styles.peepsImg}>
+              {person.avatar && (
+                <Facehash
+                  name={person.displayName}
+                  intensity3d="dramatic"
+                  colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+                  size={90}
+                  enableBlink
+                />
+              )}
             </div>
-
-            <div>
-              <h1>{person.displayName}</h1>
-              <div className={styles.people}>
-                {person.bio && (
-                  <>
-                    <h4>Bio</h4>
-                    <p>{person.bio}</p>
-                  </>
-                )}
-              </div>
-            </div>
+            <p className={styles.roles}>{person.roles.join(" · ")}</p>
           </div>
 
-          <div className={styles.share}>
-            <h4>Elsewhere</h4>
-            {person.links &&
-              Object.entries(person.links).map(([key, href]) => (
-                <HoverCard key={key}>
-                  <HoverCardTrigger asChild>
-                    <Link href={href} target="_blank" className={styles.button}>
-                      <img
-                        src={linkIcons[key as PersonLinkType]}
-                        alt={key}
-                        width={15}
-                        height={15}
-                      />
-                    </Link>
-                  </HoverCardTrigger>
-                  <HoverCardContent>
-                    <p>{key}</p>
-                  </HoverCardContent>
-                </HoverCard>
-              ))}
+          <div>
+            <h1>{person.displayName}</h1>
+            <div className={styles.people}>
+              {person.bio && (
+                <>
+                  <h4>Bio</h4>
+                  <p>{person.bio}</p>
+                </>
+              )}
+            </div>
           </div>
-
-          <hr />
         </div>
 
-        <ActivityFeed items={activity} />
+        <div className={styles.share}>
+          <h4>Elsewhere</h4>
+          {person.links &&
+            Object.entries(person.links).map(([key, href]) => (
+              <HoverCard key={key}>
+                <HoverCardTrigger asChild>
+                  <Link
+                    href={href}
+                    target="_blank"
+                    className={styles.button}
+                  >
+                    <img
+                      src={linkIcons[key as PersonLinkType]}
+                      alt={key}
+                      width={15}
+                      height={15}
+                    />
+                  </Link>
+                </HoverCardTrigger>
+                <HoverCardContent>
+                  <p>{key}</p>
+                </HoverCardContent>
+              </HoverCard>
+            ))}
+        </div>
+
+        <hr />
       </div>
-    </>
+
+      <ActivityFeed items={activity} />
+    </div>
   );
 }

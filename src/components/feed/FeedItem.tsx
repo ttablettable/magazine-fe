@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Feed.module.css";
-import { GitHubPost } from "@/utils/githubFetch";
+import { GitHubPost } from "@/lib/githubFetch";
 import AuthorList from "../AuthorList";
 import AspectRatioImage from "../ui/AspectRatioImage";
 import { motion } from "framer-motion";
@@ -75,18 +75,24 @@ export default function FeedItem({ post }: FeedItemProps) {
                   })}
                 </time>
 
-                {post.lastModified && post.lastModified !== post.published && (
-                  <>
-                    {" · Updated "}
-                    <time>
-                      {new Date(post.lastModified).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
-                  </>
-                )}
+                {post.lastModified &&
+                  post.published &&
+                  new Date(post.lastModified).toDateString() !==
+                    new Date(post.published).toDateString() && (
+                    <>
+                      {" · Updated "}
+                      <time>
+                        {new Date(post.lastModified).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          },
+                        )}
+                      </time>
+                    </>
+                  )}
               </>
             ) : post.lastModified ? (
               <time>

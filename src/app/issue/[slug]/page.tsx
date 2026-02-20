@@ -1,4 +1,4 @@
-import { fetchArchivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts } from "@/lib/githubFetch";
 import IssuePage from "@/components/issue/IssuePage";
 import { issuesData } from "@/content/issue";
 

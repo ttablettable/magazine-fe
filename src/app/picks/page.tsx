@@ -1,6 +1,6 @@
 import Feed from "@/components/feed/Feed";
 
-import { fetchArchivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts } from "@/lib/githubFetch";
 
 export default async function Picks() {
   const posts = await fetchArchivePosts();

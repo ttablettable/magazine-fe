@@ -21,7 +21,7 @@ import NotificationHost from "@/components/ui/notifications/NotificationHost";
 
 import AspectRatioImage from "@/components/ui/AspectRatioImage";
 
-import { GitHubPost } from "@/utils/githubFetch";
+import { GitHubPost } from "@/lib/githubFetch";
 import { issuesData } from "@/content/issue";
 
 import ReactMarkdown from "react-markdown";
@@ -105,7 +105,7 @@ export default function StoryPage({
     async function loadPreviousRevision() {
       try {
         const revRes = await fetch(
-          `/api/revisions?folder=archive&slug=${post.slug}`
+          `/api/revisions?folder=archive&slug=${post.slug}`,
         );
         if (!revRes.ok) return;
 
@@ -120,7 +120,7 @@ export default function StoryPage({
         });
 
         const contentRes = await fetch(
-          `/api/revision-content?${params.toString()}`
+          `/api/revision-content?${params.toString()}`,
         );
         if (!contentRes.ok) return;
 
@@ -294,12 +294,14 @@ export default function StoryPage({
 
           <div className={styles.meta}>
             <div className={styles.metaIn}>
-              <div><span>
-                <b>Written by: </b>
-              </span>
-              <span>
+              <div>
+                <span>
+                  <b>Written by: </b>
+                </span>
+                <span>
                   <AuthorList authors={post.authors} />
-              </span>{" "}</div>
+                </span>{" "}
+              </div>
               <span className={styles.issue}>
                 for the{" "}
                 <Link
@@ -329,7 +331,9 @@ export default function StoryPage({
                     <b>Last updated: </b>
                   </span>
                   <span>
-                    {new Date(post.lastModified).toLocaleDateString()}
+                    {post.lastModified
+                      ? new Date(post.lastModified).toLocaleDateString()
+                      : null}
                   </span>
                 </div>
                 <div>
@@ -400,7 +404,7 @@ export default function StoryPage({
                   className={`${styles.button} ${styles.searchButton}`}
                   onClick={() => {
                     window.open(
-                      `https://www.google.com/search?q=${selectedText}`
+                      `https://www.google.com/search?q=${selectedText}`,
                     );
                     closeMenu();
                   }}

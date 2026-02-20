@@ -1,4 +1,4 @@
-import { fetchArchivePosts, fetchLivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts, fetchLivePosts } from "@/lib/githubFetch";
 import AuthorPage from "@/components/people/AuthorPage";
 
 export default async function Page({

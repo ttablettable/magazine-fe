@@ -1,4 +1,4 @@
-import { fetchArchivePosts } from "@/utils/githubFetch";
+import { fetchArchivePosts } from "@/lib/githubFetch";
 import StoryPage from "@/components/story/StoryPage";
 
 type StoryPageProps = {
