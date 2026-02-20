@@ -1,6 +1,4 @@
 import React from "react";
-import Navigation from "../../components/navigation/Navigation";
-import Footer from "../../components/layout/Footer";
 import styles from "../page.module.css";
 
 const BacklogPage: React.FC = () => {
