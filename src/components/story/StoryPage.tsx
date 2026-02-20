@@ -294,11 +294,11 @@ export default function StoryPage({
 
           <div className={styles.meta}>
             <div className={styles.metaIn}>
-              <div>
+              <div className={styles.metaFlex}>
                 <span>
                   <b>Written by: </b>
                 </span>
-                <span>
+                <span className={styles.metaBy}>
                   <AuthorList authors={post.authors} />
                 </span>{" "}
               </div>

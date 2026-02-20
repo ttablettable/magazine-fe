@@ -14,6 +14,7 @@ type Post = {
   issue?: string;
   channel?: string;
   keyImage?: string;
+  lastModified: string | null;
 };
 
 interface IssuePageProps {
@@ -71,9 +72,21 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
               </Link>
               {cover.intro && <p className={styles.excerpt}>{cover.intro}</p>}
               {cover.authors?.length > 0 && (
-                <p>
-                  Written by{" "}
-                  <AuthorList authors={cover.authors} />
+                <p className={styles.authors}>
+                  Written by <AuthorList authors={cover.authors} />
+                  <span>
+                    ꩜{" "}
+                    {cover.lastModified
+                      ? new Date(cover.lastModified).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          },
+                        )
+                      : null}
+                  </span>
                 </p>
               )}
             </article>
@@ -98,9 +111,21 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
                     <Link href={`/story/${story.slug}`}>{story.headline}</Link>
                   </h3>
                   {story.authors?.length > 0 && (
-                    <p>
-                      Written by{" "}
-                      <AuthorList authors={story.authors} />
+                    <p className={styles.authors}>
+                      Written by <AuthorList authors={story.authors} />
+                      <span>
+                        ꩜{" "}
+                        {story.lastModified
+                          ? new Date(story.lastModified).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )
+                          : null}
+                      </span>
                     </p>
                   )}
                 </div>
@@ -125,13 +150,25 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
                     ratio={5 / 4}
                     className={styles.mainImg}
                   />
+                  {post.intro && <p>{post.intro}</p>}
                   {post.authors?.length > 0 && (
-                    <p>
-                      Written by{" "}
-                      <AuthorList authors={post.authors} />
+                    <p className={styles.authors}>
+                      Written by <AuthorList authors={post.authors} />
+                      <span>
+                        ꩜{" "}
+                        {post.lastModified
+                          ? new Date(post.lastModified).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )
+                          : null}
+                      </span>
                     </p>
                   )}
-                  {post.intro && <p>{post.intro}</p>}
                 </article>
               ))}
             </div>
@@ -154,13 +191,25 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
                   <Link href={`/story/${post.slug}`}>
                     <h3>{post.headline}</h3>
                   </Link>
+                  {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
                   {post.authors?.length > 0 && (
-                    <p>
-                      Written by{" "}
-                      <AuthorList authors={post.authors} />
+                    <p className={styles.authors}>
+                      Written by <AuthorList authors={post.authors} />
+                      <span>
+                        ꩜{" "}
+                        {post.lastModified
+                          ? new Date(post.lastModified).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )
+                          : null}
+                      </span>
                     </p>
                   )}
-                  {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
                 </article>
               ))}
             </div>
@@ -183,13 +232,25 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
                   <Link href={`/story/${post.slug}`}>
                     <h3>{post.headline}</h3>
                   </Link>
+                  {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
                   {post.authors?.length > 0 && (
-                    <p>
-                      Written by{" "}
-                      <AuthorList authors={post.authors} />
+                    <p className={styles.authors}>
+                      Written by <AuthorList authors={post.authors} />
+                      <span>
+                        ꩜{" "}
+                        {post.lastModified
+                          ? new Date(post.lastModified).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )
+                          : null}
+                      </span>
                     </p>
                   )}
-                  {post.intro && <p className={styles.excerpt}>{post.intro}</p>}
                 </article>
               ))}
             </div>

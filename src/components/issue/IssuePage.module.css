@@ -1,13 +1,12 @@
 .page {
   min-height: 100svh;
-  background: var(--white);
 }
 
 .main {
   margin-top: 66px;
-  width: 87.5%;
-  padding-left: 12.5%;
-  margin-right: auto;
+  background: var(--white);
+  padding: 0 1rem;
+  margin-bottom: var(--margin-bottom);
 }
 
 .title {
@@ -73,6 +72,7 @@
 }
 
 .story h3 {
+  margin-top: 0.25rem;
   font-size: 1.2em;
 }
 
@@ -101,6 +101,40 @@
   color: var(--highlight-pink);
 }
 
+.authors {
+  margin-top: 0.5rem;
+  color: var(--quicksand);
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+.interviews article,
+.essays article,
+.columns article {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.interviews h2,
+.essays h2,
+.columns h2 {
+  font-family: var(--playfair);
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-bottom: 0.75px dotted var(--black);
+  border-top: 0.75px solid var(--black);
+}
+
+.intGroup article h3,
+.essay article h3,
+.column article h3 {
+  font-family: var(--playfair);
+  font-size: 2rem;
+}
+
 .interviews {
   margin-top: 2rem;
 }
@@ -111,7 +145,7 @@
 
 .intGroup {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 0.6fr 0.4fr;
   gap: 40px;
 }
 

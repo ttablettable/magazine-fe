@@ -65,7 +65,7 @@
   background: var(--white);
   border: 0.5px dashed var(--black);
   margin-top: 0.5rem;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 10px;
   font-family: var(--mono);
   font-size: 0.9rem;
   text-transform: lowercase;

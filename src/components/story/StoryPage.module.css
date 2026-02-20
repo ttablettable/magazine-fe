@@ -33,9 +33,19 @@
   grid-template-columns: repeat(2, 50%);
 }
 
+.metaFlex {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.metaBy {
+}
+
 .metaIn {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.25rem;
   border: 0.5px dotted var(--black);
   padding: 1rem;
@@ -79,10 +89,10 @@
 }
 
 .issue {
-  border: 0.5px dashed var(--black);
-  border-radius: 50px;
+  background: var(--khaki);
+  color: var(--quicksand);
   padding: 5px 10px;
-  transition: all ease-in-out;
+  transition: all ease-in-out 0.2s;
   font-family: var(--mono);
   width: fit-content;
 }
@@ -362,8 +372,10 @@
   .metaIn {
     display: flex;
     flex-direction: column;
+    border: none;
     width: 100%;
     text-align: left;
+    padding: 1rem 0;
     gap: 0.25rem;
   }
 }

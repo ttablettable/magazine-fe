@@ -87,7 +87,7 @@ const AboutPage: React.FC = () => {
               {Object.values(PEOPLE).map((person) => (
                 <Link
                   key={person.slug}
-                  href={`/author/${person.slug}`}
+                  href={`/people/${person.slug}`}
                   className={styles.authorCard}
                 >
                   <div className={styles.authorAvatar}>

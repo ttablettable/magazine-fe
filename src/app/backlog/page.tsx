@@ -6,7 +6,6 @@ import styles from "../page.module.css";
 const BacklogPage: React.FC = () => {
   return (
     <div className={styles.page}>
-      <Navigation />
       <main className={styles.main}>
         <section id="hero">
           <h1>Roadmap</h1>
@@ -68,7 +67,6 @@ const BacklogPage: React.FC = () => {
           <p>To go back further in time, visit our Wiki.</p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };
