@@ -20,6 +20,7 @@ import { useNotifications } from "@/hooks/useNotifications";
 import NotificationHost from "@/components/ui/notifications/NotificationHost";
 
 import AspectRatioImage from "@/components/ui/AspectRatioImage";
+import Icon from "@/components/ui/Icon";
 
 import { GitHubPost } from "@/lib/githubFetch";
 import { issuesData } from "@/content/issue";
@@ -359,7 +360,7 @@ export default function StoryPage({
                   className={`${styles.button} ${styles.closeButton}`}
                   onClick={closeMenu}
                 >
-                  <img src="/asterisk.svg" width="15" height="15" alt="" />
+                  <Icon name="asterisk" size={15} />
                 </button>
 
                 {/* Copy & Notify */}
@@ -394,9 +395,7 @@ export default function StoryPage({
                     closeMenu();
                   }}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24">
-                    <path d="M18 6v-6h-18v18h6v6h18v-18h-6zm-12 10h-4v-14h14v4h-10v10zm16 6h-14v-14h14v14z" />
-                  </svg>
+                  <Icon name="copy" size={15} />
                 </button>
 
                 {/* Google search */}
@@ -409,9 +408,7 @@ export default function StoryPage({
                     closeMenu();
                   }}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24">
-                    <path d="M23.822 20.88l-6.353-6.354c.93-1.465 1.467-3.2 1.467-5.059.001-5.219-4.247-9.467-9.468-9.467s-9.468 4.248-9.468 9.468c0 5.221 4.247 9.469 9.468 9.469 1.768 0 3.421-.487 4.839-1.333l6.396 6.396 3.119-3.12zm-20.294-11.412c0-3.273 2.665-5.938 5.939-5.938 3.275 0 5.94 2.664 5.94 5.938 0 3.275-2.665 5.939-5.94 5.939-3.274 0-5.939-2.664-5.939-5.939z" />
-                  </svg>
+                  <Icon name="search" size={15} />
                 </button>
               </div>
             )}

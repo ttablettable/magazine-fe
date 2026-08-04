@@ -16,7 +16,7 @@
 .main ol {
   padding-left: 0;
   margin: 0;
-  line-height: 24px;
+  line-height: 1.5;
   letter-spacing: -0.01em;
   list-style-position: inside;
 }
@@ -39,6 +39,7 @@
 
 .header h1 {
   text-align: center;
+  text-wrap: balance;
 }
 
 .header h2 {
@@ -47,11 +48,14 @@
   font-weight: 200;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
+  text-wrap: balance;
+  letter-spacing: 0.04em;
 }
 
 .header p {
   text-align: center;
   font-style: italic;
+  text-wrap: pretty;
 }
 
 .authorGrid {
@@ -94,7 +98,6 @@
   margin: 1rem 0;
   color: var(--black);
   font-size: 1.2rem;
-  text-decoration: none;
 }
 
 .people p {
@@ -103,6 +106,7 @@
   line-height: 1.6;
   font-size: 1rem;
   color: var(--black);
+  max-width: 65ch;
 }
 
 .peepsImg {

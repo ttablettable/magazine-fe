@@ -18,13 +18,14 @@
   font-size: 5rem;
   border-bottom: 0.5px solid var(--black);
   font-weight: 400;
+  text-wrap: balance;
 }
 
 .title h4 {
-  text-decoration: none;
   text-transform: uppercase;
   font-weight: 200;
   margin-bottom: 2rem;
+  letter-spacing: 0.04em;
 }
 
 .header {
@@ -74,13 +75,17 @@
 .story h3 {
   margin-top: 0.25rem;
   font-size: 1.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-wrap: pretty;
 }
 
 .story h4 {
   margin-top: 0.5em;
   font-size: 0.8em;
   font-weight: 500;
-  text-decoration: none;
   text-transform: lowercase;
   margin-bottom: 10px;
   width: fit-content;

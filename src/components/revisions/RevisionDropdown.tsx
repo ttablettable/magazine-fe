@@ -80,6 +80,7 @@ export function RevisionDropdown({
                 key={rev.sha}
                 type="button"
                 className={styles.revisionItem}
+                title={label}
                 onClick={() => {
                   router.push(`/story/${slug}/${rev.shortSha}`);
                 }}

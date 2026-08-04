@@ -40,7 +40,8 @@
   width: 20px;
   display: block;
   margin: 5px;
-  transition: all 0.3s ease;
+  transition: scale 0.3s ease;
+  color: var(--purple);
 }
 
 .footerIcon img {

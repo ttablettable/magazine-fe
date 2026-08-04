@@ -8,9 +8,17 @@
   background-color: var(--white);
 }
 
-.headerInfo h1, 
+.headerInfo h1,
 .headerInfo p {
   text-align: left;
+}
+
+.headerInfo h1 {
+  text-wrap: balance;
+}
+
+.people p {
+  max-width: 65ch;
 }
 
 .headerInfo {
@@ -30,7 +38,6 @@
 .share h4 {
   margin: 0;
   flex-shrink: 0;
-  text-decoration: none;
   font-size: 0.9rem;
   color: var(--highlight-pink);
 }
@@ -44,7 +51,7 @@
   border: 1px dotted var(--highlight-purple);
   border-radius: 50%;
   background: transparent;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .share .button:hover {

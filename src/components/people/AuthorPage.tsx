@@ -11,6 +11,7 @@ import {
   HoverCardContent,
 } from "@/components/ui/HoverCard";
 import Link from "next/link";
+import Icon from "@/components/ui/Icon";
 import styles from "./AuthorPage.module.css";
 import { Facehash } from "facehash";
 
@@ -60,10 +61,9 @@ export default function AuthorPage({
     })),
   });
 
-  const linkIcons: Record<PersonLinkType, string> = {
+  const linkIcons: Partial<Record<PersonLinkType, string>> = {
     farcaster: "/fc-transparent-black.svg",
     bluesky: "/bluesky.svg",
-    url: "/link.svg",
   };
 
   return (
@@ -109,12 +109,16 @@ export default function AuthorPage({
                     target="_blank"
                     className={styles.button}
                   >
-                    <img
-                      src={linkIcons[key as PersonLinkType]}
-                      alt={key}
-                      width={15}
-                      height={15}
-                    />
+                    {key === "url" ? (
+                      <Icon name="link" size={15} />
+                    ) : (
+                      <img
+                        src={linkIcons[key as PersonLinkType]}
+                        alt={key}
+                        width={15}
+                        height={15}
+                      />
+                    )}
                   </Link>
                 </HoverCardTrigger>
                 <HoverCardContent>

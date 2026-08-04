@@ -122,6 +122,10 @@
   font-family: var(--mono);
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .revisionItem:hover {

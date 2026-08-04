@@ -92,7 +92,7 @@
   background: var(--khaki);
   color: var(--quicksand);
   padding: 5px 10px;
-  transition: all ease-in-out 0.2s;
+  transition: transform ease-in-out 0.2s;
   font-family: var(--mono);
   width: fit-content;
 }
@@ -131,6 +131,7 @@
   line-height: 1.7;
   font-size: 1.7rem;
   color: var(--black);
+  max-width: 70ch;
 }
 
 .article h1,
@@ -227,7 +228,7 @@
 
 .storyIssue a {
   font-weight: 600;
-  transition: all 0.25s ease;
+  transition: font-weight 0.25s ease;
 }
 
 .storyIssue:hover {
@@ -316,6 +317,8 @@
 
 .revisionBackLink {
   text-decoration: underline;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.1em;
   font-weight: 600;
 }
 

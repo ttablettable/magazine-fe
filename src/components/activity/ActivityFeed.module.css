@@ -83,10 +83,13 @@
 
 .storyTitle:hover {
     text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.1em;
 }
 
 .dates {
     font-size: 0.9em;
     font-family: var(--mono);
     color: var(--quicksand);
+    font-variant-numeric: tabular-nums;
 }
