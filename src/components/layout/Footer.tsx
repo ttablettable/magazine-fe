@@ -106,12 +106,13 @@ const Footer: React.FC = () => {
       </div>
       <div className={styles.footerWrap}>
         <form>
-          <label>
+          <label className={styles.subscribeLabel}>
+            Email address
             <input
               id="email-input"
               type="email"
               required
-              placeholder="Email address"
+              placeholder="name@example.com"
               className={styles.iForm}
             ></input>
           </label>

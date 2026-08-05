@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { fetchArchivePosts } from "@/lib/githubFetch";
 import { fetchRevisionContent } from "@/utils/fetchRevisions";
 import { parseMarkdown } from "@/lib/parseMarkdown";
@@ -18,14 +19,26 @@ export default async function StoryRevisionPage({
   const basePost = posts.find((p) => p.slug === slug);
 
   if (!basePost) {
-    return <h1>Story not found</h1>;
+    return (
+      <main style={{ padding: "4rem" }}>
+        <h1>404 – Story not found</h1>
+        <p>This story doesn&apos;t exist or may have been removed.</p>
+        <Link href="/">Back to the feed</Link>
+      </main>
+    );
   }
 
   // 2. Raw markdown at revision
   const raw = await fetchRevisionContent("archive", slug, sha);
 
   if (!raw) {
-    return <h1>Revision not found</h1>;
+    return (
+      <main style={{ padding: "4rem" }}>
+        <h1>404 – Revision not found</h1>
+        <p>This revision doesn&apos;t exist or may have been removed.</p>
+        <Link href={`/story/${slug}`}>Back to the story</Link>
+      </main>
+    );
   }
 
   // 3. Parse markdown (THIS removes front matter)

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { fetchArchivePosts } from "@/lib/githubFetch";
 import StoryPage from "@/components/story/StoryPage";
 
@@ -15,8 +16,9 @@ export default async function Story({ params }: StoryPageProps) {
   if (!post) {
     return (
       <main style={{ padding: "4rem" }}>
-        <h1>404 – Story Not Found</h1>
-        <p>We couldn’t find that story in the archive.</p>
+        <h1>404 – Story not found</h1>
+        <p>This story doesn&apos;t exist or may have been removed.</p>
+        <Link href="/">Back to the feed</Link>
       </main>
     );
   }

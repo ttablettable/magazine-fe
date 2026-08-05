@@ -28,9 +28,11 @@ export function RevisionDropdown({
   });
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
 
   async function loadRevisions(cursor?: string | null) {
     setLoading(true);
+    setError(false);
     try {
       const params = new URLSearchParams({ folder, slug });
       if (cursor) params.set("cursor", cursor);
@@ -46,6 +48,7 @@ export function RevisionDropdown({
       setPageInfo(data.pageInfo);
     } catch (err) {
       console.error(err);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -66,11 +69,24 @@ export function RevisionDropdown({
         onClick={() => setOpen((v) => !v)}
         className={styles.revisionToggle}
       >
-        {open ? "Hide revisions" : "Revision history"}
+        {open ? "Hide revisions" : "Show revisions"}
       </button>
 
       {open && (
         <div className={styles.revisionList}>
+          {error && (
+            <div className={styles.revisionError}>
+              <span>Unable to load revisions.</span>
+              <button
+                type="button"
+                onClick={() => loadRevisions()}
+                className={styles.revisionRetry}
+              >
+                Try again
+              </button>
+            </div>
+          )}
+
           {revisions.map((rev) => {
             const dateStr = rev.date.slice(0, 10).replace(/-/g, "");
             const label = `(${rev.shortSha}-${dateStr}) ${rev.message}`;

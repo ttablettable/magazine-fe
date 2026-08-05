@@ -15,17 +15,23 @@ const SignUpPage = () => {
           </header>
 
           <form className={styles.form}>
+            <label htmlFor="name" className={styles.label}>
+              Name
+            </label>
             <input
               id="name"
               type="text"
-              placeholder="enter name"
+              placeholder="Jane Doe"
               required
             />
 
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
             <input
               id="email"
               type="email"
-              placeholder="enter email address"
+              placeholder="name@example.com"
               required
             />
 
@@ -35,8 +41,8 @@ const SignUpPage = () => {
           <p className={styles.cite}>or</p>
 
           <div className={styles.oauth}>
-            <button>Start with Google</button>
-            <button>Start with Apple</button>
+            <button>Continue with Google</button>
+            <button>Continue with Apple</button>
           </div>
 
           <p className={styles.muted}>

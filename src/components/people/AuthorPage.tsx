@@ -35,7 +35,8 @@ export default function AuthorPage({
       <div className={styles.page}>
         <main className={styles.main}>
           <h1>{authorSlug}</h1>
-          <p>Profile not claimed yet.</p>
+          <p>This person hasn&apos;t been added yet.</p>
+          <Link href="/">Back to the feed</Link>
         </main>
       </div>
     );

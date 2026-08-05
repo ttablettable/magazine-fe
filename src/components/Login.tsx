@@ -22,13 +22,13 @@ export default function Login() {
           </div>
           {showDropdown && (
             <div className={styles.dropdown}>
-              <button onClick={() => console.log('Dashboard clicked')}>
+              <button disabled title="Coming soon">
                 Dashboard
               </button>
-              <button onClick={() => console.log('Settings clicked')}>
+              <button disabled title="Coming soon">
                 Settings
               </button>
-              <button onClick={logout}>Log Out</button>
+              <button onClick={logout}>Log out</button>
             </div>
           )}
         </div>
@@ -38,7 +38,7 @@ export default function Login() {
           onClick={login}
           className={styles.button}
         >
-          Log In
+          Log in
         </button>
       )}
     </div>

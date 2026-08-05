@@ -69,5 +69,14 @@
 }
   
 .dropdown button:hover {
-    background: var(--pink);   
+    background: var(--pink);
+}
+
+.dropdown button:disabled {
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.dropdown button:disabled:hover {
+    background: transparent;
 }

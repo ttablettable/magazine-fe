@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { fetchArchivePosts } from "@/lib/githubFetch";
 import IssuePage from "@/components/issue/IssuePage";
 import { issuesData } from "@/content/issue";
@@ -15,8 +16,9 @@ export default async function Issue({ params }: IssuePageProps) {
   if (!issueMeta) {
     return (
       <main style={{ padding: "4rem" }}>
-        <h1>404 – Issue Not Found</h1>
-        <p>No issue found for slug: {slug}</p>
+        <h1>404 – Issue not found</h1>
+        <p>This issue doesn&apos;t exist or may have been removed.</p>
+        <Link href="/">Back to the feed</Link>
       </main>
     );
   }

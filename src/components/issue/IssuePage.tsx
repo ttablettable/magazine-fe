@@ -24,7 +24,16 @@ interface IssuePageProps {
 }
 
 const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
-  if (!issueMeta) return <div>Issue not found.</div>;
+  if (!issueMeta)
+    return (
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <h1>404 – Issue not found</h1>
+          <p>This issue doesn&apos;t exist or may have been removed.</p>
+          <Link href="/">Back to the feed</Link>
+        </main>
+      </div>
+    );
   if (posts.length === 0)
     return (
       <div className={styles.page}>

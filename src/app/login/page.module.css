@@ -55,6 +55,11 @@
     font-size: 1rem;
 }
 
+.label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
 .form button {
   background: var(--purple);
 }

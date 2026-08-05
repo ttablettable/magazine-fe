@@ -15,10 +15,13 @@ const LoginPage = () => {
           </header>
 
           <form className={styles.form}>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
             <input
               id="email"
               type="email"
-              placeholder="enter email address"
+              placeholder="name@example.com"
               required
             />
 
@@ -28,8 +31,8 @@ const LoginPage = () => {
           <p className={styles.cite}>or</p>
 
           <div className={styles.oauth}>
-            <button>Login with Google</button>
-            <button>Login with Apple</button>
+            <button>Continue with Google</button>
+            <button>Continue with Apple</button>
           </div>
           <p className={styles.muted}>
             Don’t have an account? <br />

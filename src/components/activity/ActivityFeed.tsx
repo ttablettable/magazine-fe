@@ -13,7 +13,10 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({ items }) => {
     console.warn("[ActivityFeed] Empty activity list");
     return (
       <div className={styles.timeline}>
-        <p className={styles.empty}>No activity yet.</p>
+        <p className={styles.empty}>
+          No activity yet. Edits, posts, and other activity will show up
+          here.
+        </p>
       </div>
     );
   }

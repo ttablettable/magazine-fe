@@ -108,6 +108,37 @@
 }
 
 /* =========================================
+   ERROR STATE
+   ========================================= */
+
+.revisionError {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.6rem;
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  color: var(--persimmon);
+}
+
+.revisionRetry {
+  background: transparent;
+  border: 1px solid var(--persimmon);
+  color: var(--persimmon);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.revisionRetry:hover {
+  background: var(--persimmon);
+  color: var(--white);
+}
+
+/* =========================================
    LIST ITEMS
    ========================================= */
 
