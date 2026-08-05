@@ -41,7 +41,7 @@
   display: block;
   margin: 5px;
   transition: scale 0.3s ease;
-  color: var(--purple);
+  color: var(--text-muted);
 }
 
 .footerIcon img {

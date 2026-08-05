@@ -21,7 +21,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ activity }) => {
 
   const issueMeta = issuesData.find((i) => i.slug === activity.issue);
 
-  const issueColor = issueMeta?.color || "#000";
+  const issueColor = issueMeta?.color || "var(--black)";
 
   if (activity.type === "authored") {
     const { title, storySlug, issue, date } = activity;

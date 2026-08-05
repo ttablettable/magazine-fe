@@ -76,7 +76,12 @@ export default function AuthorPage({
                 <Facehash
                   name={person.displayName}
                   intensity3d="dramatic"
-                  colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+                  colors={[
+                    "var(--highlight-green)",
+                    "var(--highlight-yellow)",
+                    "var(--highlight-purple)",
+                    "var(--highlight-pink)",
+                  ]}
                   size={90}
                   enableBlink
                 />

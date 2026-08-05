@@ -5,6 +5,7 @@ import Link from "next/link";
 import { IssueMeta } from "@/content/issue";
 import AspectRatioImage from "@/components/ui/AspectRatioImage";
 import AuthorList from "../AuthorList";
+import { getContrastColor } from "@/lib/getContrastColor";
 
 type Post = {
   slug: string;
@@ -45,7 +46,10 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
         {/* HEADER */}
         <div
           className={styles.title}
-          style={{ backgroundColor: issueMeta.color }}
+          style={{
+            backgroundColor: issueMeta.color,
+            color: getContrastColor(issueMeta.color ?? "#fffff8"),
+          }}
         >
           <div>
             <h1>{issueMeta.title}</h1>

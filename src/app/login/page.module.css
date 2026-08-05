@@ -65,7 +65,7 @@
 }
 
 .muted {
-    color: var(--quicksand);
+    color: var(--text-muted);
 }
 
 .muted a {

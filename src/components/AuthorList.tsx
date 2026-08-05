@@ -18,7 +18,12 @@ export default function AuthorList({ authors }: { authors: string[] }) {
           <Facehash
             name={author}
             intensity3d="dramatic"
-            colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+            colors={[
+              "var(--highlight-green)",
+              "var(--highlight-yellow)",
+              "var(--highlight-purple)",
+              "var(--highlight-pink)",
+            ]}
             size={20}
             enableBlink
           />

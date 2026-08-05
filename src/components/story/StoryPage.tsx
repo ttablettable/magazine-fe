@@ -150,7 +150,7 @@ export default function StoryPage({
   }, [post.content]);
 
   const issueMeta = issuesData.find((i) => i.slug === post.issue);
-  const issueColor = issueMeta?.color || "#000";
+  const issueColor = issueMeta?.color || "var(--black)";
 
   // all posts in same issue except current one
   const siblings = relatedPosts

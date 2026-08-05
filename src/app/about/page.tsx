@@ -97,7 +97,12 @@ const AboutPage: React.FC = () => {
                       <Facehash
                         name={person.slug}
                         intensity3d="dramatic"
-                        colors={["#cdda53", "#f8ef69", "#72589f", "#be629f"]}
+                        colors={[
+                          "var(--highlight-green)",
+                          "var(--highlight-yellow)",
+                          "var(--highlight-purple)",
+                          "var(--highlight-pink)",
+                        ]}
                         size={40}
                         enableBlink
                       />

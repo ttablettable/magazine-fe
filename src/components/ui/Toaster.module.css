@@ -29,6 +29,6 @@
 }
 
 .toastCancelButton:hover {
-    background-color: var(--muted-hover); /* Replace with actual CSS variable or color */
+    background-color: var(--muted-hover);
 }
   

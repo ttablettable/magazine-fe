@@ -80,7 +80,7 @@
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
-  color: var(--purple);
+  color: var(--text-muted);
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
 }

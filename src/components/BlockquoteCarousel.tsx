@@ -5,27 +5,13 @@ import { useRouter } from "next/navigation";
 import styles from "./BlockquoteCarousel.module.css";
 
 import { issuesData } from "@/content/issue";
+import { getContrastColor } from "@/lib/getContrastColor";
 
 interface Quote {
   slug: string;
   text: string;
   headline: string;
   issue: string | null;
-}
-
-function getContrastColor(hex: string) {
-  // Normalize: remove # if present
-  const clean = hex.replace("#", "");
-
-  const r = parseInt(clean.substr(0, 2), 16);
-  const g = parseInt(clean.substr(2, 2), 16);
-  const b = parseInt(clean.substr(4, 2), 16);
-
-  // Calculate relative luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-
-  // If luminance is high, return black; otherwise white
-  return luminance > 0.6 ? "#111111" : "#FFFFF8";
 }
 
 export default function BlockquoteCarousel({ quotes }: { quotes: Quote[] }) {
