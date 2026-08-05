@@ -22,10 +22,12 @@
 
 .success {
   background: var(--green);
+  color: var(--black);
 }
 
 .error {
   background: var(--persimmon);
+  color: var(--black);
 }
 
 @keyframes fadeInUp {

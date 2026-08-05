@@ -90,7 +90,7 @@
 
 .issue {
   background: var(--khaki);
-  color: var(--text-muted);
+  color: var(--black);
   padding: 5px 10px;
   transition: transform ease-in-out 0.2s;
   font-family: var(--mono);

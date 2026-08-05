@@ -122,13 +122,15 @@
   padding: 0.55rem 0.6rem;
   font-size: 0.8rem;
   font-family: var(--mono);
-  color: var(--persimmon);
+  color: var(--black);
+  background: var(--white);
+  border-left: 3px solid var(--persimmon);
 }
 
 .revisionRetry {
   background: transparent;
   border: 1px solid var(--persimmon);
-  color: var(--persimmon);
+  color: var(--black);
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   font-family: var(--mono);
@@ -138,7 +140,7 @@
 
 .revisionRetry:hover {
   background: var(--persimmon);
-  color: var(--white);
+  color: var(--black);
 }
 
 /* =========================================
@@ -186,4 +188,8 @@
 
 .revisionLoadMore:hover {
   background: var(--revision-load-more-hover);
+}
+
+.revisionLoadMore:focus-visible {
+  outline-color: var(--white);
 }
