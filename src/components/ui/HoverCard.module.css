@@ -5,21 +5,15 @@
     color: var(--white);
     box-shadow: var(--shadow);
 
-    animation: fadeIn 200ms ease-in-out;
-  
-    opacity: 1;
-    transform: scale(1);
+    transform-origin: var(--radix-hover-card-content-transform-origin);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.hoverCardContent[data-state="open"] {
+    opacity: 1;
+    transform: scale(1);
 }
 
 @keyframes slideInFromBottom {
@@ -31,18 +25,8 @@
     }
 }
 
-@keyframes fadeInReduced {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     .hoverCardContent {
-        animation-name: fadeInReduced;
+        transition: opacity 200ms ease-in-out;
     }
 }
-

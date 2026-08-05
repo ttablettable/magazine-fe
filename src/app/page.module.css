@@ -67,7 +67,7 @@
 
 .authorGrid a {
   color: var(--black);
-  transition: scale 0.2s ease-in-out;
+  transition: scale 0.2s var(--ease-in-out);
 }
 
 .authorGrid a:hover {

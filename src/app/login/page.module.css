@@ -51,7 +51,7 @@
 
 .form button,
 .oauth button {
-  transition: transform 120ms ease-out;
+  transition: transform 120ms var(--ease-out);
 }
 
 .form button:active,

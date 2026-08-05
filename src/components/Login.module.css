@@ -12,7 +12,7 @@
     background-color: var(--white);
     border: 2px dotted var(--highlight-yellow);
     color: var(--black);
-    transition: background-color 0.3s ease, transform 120ms ease-out;
+    transition: background-color 0.3s ease, transform 120ms var(--ease-out);
     margin: auto;
 }
 

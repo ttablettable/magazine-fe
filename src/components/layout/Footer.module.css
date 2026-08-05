@@ -90,7 +90,7 @@
   background-color: var(--highlight-yellow);
   color: var(--black);
   font-weight: 600;
-  transition: transform 120ms ease-out;
+  transition: transform 120ms var(--ease-out);
 }
 
 .button:active {

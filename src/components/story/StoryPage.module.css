@@ -53,7 +53,7 @@
 
 .metaBlock {
   margin-bottom: 1rem;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s var(--ease-in-out);
 }
 
 .share {
@@ -92,7 +92,7 @@
   background: var(--khaki);
   color: var(--black);
   padding: 5px 10px;
-  transition: transform ease-in-out 0.2s;
+  transition: transform var(--ease-in-out) 0.2s;
   font-family: var(--mono);
   width: fit-content;
 }
@@ -152,7 +152,7 @@
   color: var(--white);
   padding: 3rem;
   margin: 2rem 0;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s var(--ease-in-out);
 }
 
 .article blockquote:hover {
