@@ -12,17 +12,27 @@
     background-color: var(--white);
     border: 2px dotted var(--highlight-yellow);
     color: var(--black);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 120ms ease-out;
     margin: auto;
 }
 
 .button:hover {
     background-color: var(--highlight-yellow);
 }
-  
+
+.button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
 .button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button:active:not(:disabled) {
+        transform: none;
+    }
 }
   
 .avatar {
@@ -61,6 +71,34 @@
     z-index: 100;
     overflow: hidden;
     padding: 0.5rem;
+    transform-origin: top right;
+    animation: dropdownIn 180ms ease-out;
+}
+
+@keyframes dropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes dropdownInReduced {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dropdown {
+        animation-name: dropdownInReduced;
+    }
 }
   
 .dropdown button {

@@ -49,6 +49,23 @@
   min-height: 50px;
 }
 
+.form button,
+.oauth button {
+  transition: transform 120ms ease-out;
+}
+
+.form button:active,
+.oauth button:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form button:active,
+  .oauth button:active {
+    transform: none;
+  }
+}
+
 .form input {
     border: 0.25px solid var(--black);
     padding: 0.5rem;

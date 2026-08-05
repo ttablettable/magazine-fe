@@ -74,12 +74,22 @@
   justify-content: space-between;
   gap: 0.6rem;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 120ms ease-out;
 }
 
 .revisionToggle:hover {
   background: var(--highlight-yellow);
   border-color: var(--black);
+}
+
+.revisionToggle:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revisionToggle:active {
+    transform: none;
+  }
 }
 
 /* =========================================
@@ -101,6 +111,35 @@
 
   max-height: 320px;
   overflow-y: auto;
+
+  transform-origin: top;
+  animation: revisionListIn 180ms ease-out;
+}
+
+@keyframes revisionListIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes revisionListInReduced {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revisionList {
+    animation-name: revisionListInReduced;
+  }
 }
 
 /* Divider line like screenshot */
@@ -136,6 +175,17 @@
   font-family: var(--mono);
   cursor: pointer;
   flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 120ms ease-out;
+}
+
+.revisionRetry:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revisionRetry:active {
+    transform: none;
+  }
 }
 
 .revisionRetry:hover {

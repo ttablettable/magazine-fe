@@ -90,4 +90,15 @@
   background-color: var(--highlight-yellow);
   color: var(--black);
   font-weight: 600;
+  transition: transform 120ms ease-out;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:active {
+    transform: none;
+  }
 }

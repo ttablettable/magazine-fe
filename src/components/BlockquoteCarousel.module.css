@@ -120,6 +120,11 @@
   border: 1px solid var(--black);
   background: transparent;
   cursor: pointer;
+  transition: transform 120ms ease-out;
+}
+
+.arrowButton:active {
+  transform: scale(0.95);
 }
 
 .pauseButton {
@@ -131,4 +136,16 @@
   border: 1px solid var(--black);
   background: transparent;
   cursor: pointer;
+  transition: transform 120ms ease-out;
+}
+
+.pauseButton:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrowButton:active,
+  .pauseButton:active {
+    transform: none;
+  }
 }
