@@ -15,6 +15,7 @@ const Share: React.FC<{ url: string; onCopy?: (url: string) => void }> = ({
     <div className={styles.box}>
       {/* Copy */}
       <button
+        aria-label="Copy link"
         onClick={() => {
           navigator.clipboard.writeText(url);
           onCopy?.(url);
@@ -59,6 +60,7 @@ const Share: React.FC<{ url: string; onCopy?: (url: string) => void }> = ({
         target="_blank"
         rel="noopener noreferrer"
         className={styles.icon}
+        aria-label="Share on Reddit"
       >
         <Icon name="reddit" size={24} />
       </Link>
@@ -67,6 +69,7 @@ const Share: React.FC<{ url: string; onCopy?: (url: string) => void }> = ({
           text,
         )}&body=${encodeURIComponent(`I thought you might like this:\n\n${url}`)}`}
         className={styles.icon}
+        aria-label="Share by email"
       >
           <Icon name="mail" size={24} />
       </Link>

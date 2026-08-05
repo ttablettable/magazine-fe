@@ -114,13 +114,16 @@ export default function AuthorPage({
                     href={href}
                     target="_blank"
                     className={styles.button}
+                    aria-label={
+                      key === "url" ? "Visit website" : `Visit ${key}`
+                    }
                   >
                     {key === "url" ? (
                       <Icon name="link" size={15} />
                     ) : (
                       <img
                         src={linkIcons[key as PersonLinkType]}
-                        alt={key}
+                        alt=""
                         width={15}
                         height={15}
                       />

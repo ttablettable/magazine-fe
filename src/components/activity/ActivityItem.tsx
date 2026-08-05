@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./ActivityFeed.module.css";
 import { ACTIVITY_META } from "./activity.meta";
 import type { Activity } from "./activity.types";
+import TimelineIcons from "./TimelineIcons";
 
 import { issuesData } from "@/content/issue";
 
@@ -33,7 +34,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ activity }) => {
             styles[`timelineDot-${meta.color}`]
           }`}
         >
-          <div className={styles.defaultDot} />
+          <TimelineIcons name={meta.icon} color={meta.color} size={16} />
         </div>
 
         <div className={styles.timelineContent}>

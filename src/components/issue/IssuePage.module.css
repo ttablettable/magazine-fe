@@ -40,6 +40,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
 }
 
 .caretOpen {
@@ -70,6 +76,17 @@
 .story:hover {
   transform: scale(1.02);
   box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caretOpen,
+  .caretClosed {
+    transition: none;
+  }
+
+  .story:hover {
+    transform: none;
+  }
 }
 
 .story h3 {

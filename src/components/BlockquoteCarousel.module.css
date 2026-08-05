@@ -11,9 +11,14 @@
   will-change: transform;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+}
+
 .slide {
   min-width: 100%;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +26,13 @@
   padding: 1rem 2rem;
   background-color: transparent;
   border-top: 1px solid var(--highlight-green);
+}
+
+.slideLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 
 .quote {
@@ -67,21 +79,43 @@
 
 .pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 0.4rem;
   margin-top: 1rem;
 }
 
 .dot {
+  position: relative;
   width: 22px;              /* <- rounded rect width */
   height: 6px;              /* <- thin pill shape */
   border-radius: 6px;       /* fully rounded ends */
   background: #ccc;
   border: none;
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: background 0.25s ease, width 0.25s ease;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
 }
 
 .active {
+  width: 32px;               /* size cue in addition to color */
   background: #111;         /* make active rectangle darker */
+}
+
+.pauseButton {
+  margin-left: 0.6rem;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--black);
+  background: transparent;
+  cursor: pointer;
 }

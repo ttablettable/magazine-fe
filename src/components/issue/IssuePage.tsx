@@ -108,12 +108,20 @@ const IssuePage: React.FC<IssuePageProps> = ({ issueMeta, posts }) => {
 
         {/* TABLE OF CONTENTS */}
         <div className={styles.header}>
-          <div onClick={() => setOpen(!open)} className={styles.indexToggle}>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className={styles.indexToggle}
+            aria-expanded={open}
+          >
             <h2>Index</h2>
-            <span className={open ? styles.caretOpen : styles.caretClosed}>
+            <span
+              className={open ? styles.caretOpen : styles.caretClosed}
+              aria-hidden="true"
+            >
               ▼
             </span>
-          </div>
+          </button>
 
           {open && (
             <div className={styles.grid}>

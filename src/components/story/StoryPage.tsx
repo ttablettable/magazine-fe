@@ -217,7 +217,7 @@ export default function StoryPage({
   }, [post.content, changedIndexes, isRevision]);
 
   const markdownComponents = {
-    h1: (props: any) => <h1 className={styles.h1} {...props} />,
+    h1: (props: any) => <h2 className={styles.h1} {...props} />,
     h2: (props: any) => <h2 className={styles.h2} {...props} />,
     p: (props: any) => <p className={styles.p} {...props} />,
 
@@ -359,6 +359,7 @@ export default function StoryPage({
                 <button
                   className={`${styles.button} ${styles.closeButton}`}
                   onClick={closeMenu}
+                  aria-label="Close menu"
                 >
                   <Icon name="asterisk" size={15} />
                 </button>
@@ -366,6 +367,7 @@ export default function StoryPage({
                 {/* Copy & Notify */}
                 <button
                   className={`${styles.button} ${styles.copyButton}`}
+                  aria-label="Copy citation"
                   onClick={() => {
                     // 1. Capture rect BEFORE copying OR closing menu
                     const rect = getSelectionRect();
@@ -401,6 +403,7 @@ export default function StoryPage({
                 {/* Google search */}
                 <button
                   className={`${styles.button} ${styles.searchButton}`}
+                  aria-label="Search Google for selection"
                   onClick={() => {
                     window.open(
                       `https://www.google.com/search?q=${selectedText}`,

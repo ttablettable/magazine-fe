@@ -37,7 +37,8 @@
 }
 
 .footerIcon {
-  width: 20px;
+  width: 24px;
+  height: 24px;
   display: block;
   margin: 5px;
   transition: scale 0.3s ease;
@@ -53,6 +54,12 @@
 .footerIcon:hover {
   scale: 1.2;
   cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerIcon:hover {
+    scale: 1;
+  }
 }
 
 .subscribeLabel {

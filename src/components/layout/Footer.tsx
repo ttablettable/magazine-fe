@@ -113,6 +113,7 @@ const Footer: React.FC = () => {
               type="email"
               required
               placeholder="name@example.com"
+              autoComplete="email"
               className={styles.iForm}
             ></input>
           </label>

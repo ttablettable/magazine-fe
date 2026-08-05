@@ -2,11 +2,31 @@
 
 import { usePrivy } from '@privy-io/react-auth';
 import styles from './Login.module.css';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Login() {
   const { ready, authenticated, user, login, logout } = usePrivy();
   const [showDropdown, setShowDropdown] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const firstItemRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (showDropdown) {
+      firstItemRef.current?.focus();
+    }
+  }, [showDropdown]);
+
+  function closeDropdown() {
+    setShowDropdown(false);
+    triggerRef.current?.focus();
+  }
+
+  function handleDropdownKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeDropdown();
+    }
+  }
 
   if (!ready) return null;
 
@@ -14,21 +34,35 @@ export default function Login() {
     <div className={styles.container}>
       {authenticated ? (
         <div>
-          <div
+          <button
+            type="button"
+            ref={triggerRef}
             className={styles.avatar}
-            onClick={() => setShowDropdown(!showDropdown)}
+            onClick={() => setShowDropdown((v) => !v)}
+            aria-haspopup="menu"
+            aria-expanded={showDropdown}
           >
             Profile
-          </div>
+          </button>
           {showDropdown && (
-            <div className={styles.dropdown}>
-              <button disabled title="Coming soon">
+            <div
+              className={styles.dropdown}
+              role="menu"
+              onKeyDown={handleDropdownKeyDown}
+            >
+              <button role="menuitem" disabled title="Coming soon">
                 Dashboard
               </button>
-              <button disabled title="Coming soon">
+              <button role="menuitem" disabled title="Coming soon">
                 Settings
               </button>
-              <button onClick={logout}>Log out</button>
+              <button
+                ref={firstItemRef}
+                role="menuitem"
+                onClick={() => { logout(); closeDropdown(); }}
+              >
+                Log out
+              </button>
             </div>
           )}
         </div>

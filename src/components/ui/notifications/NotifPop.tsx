@@ -27,11 +27,17 @@ export default function NotifPop({
     return () => clearTimeout(timer);
   }, [id, duration, onClose]);
 
+  const glyph = variant === "success" ? "✓" : variant === "error" ? "✕" : "•";
+
   return (
     <div
       className={`${styles.popover} ${styles[variant]}`}
       style={{ top: y, left: x }}
+      role={variant === "error" ? "alert" : "status"}
     >
+      <span aria-hidden="true" className={styles.glyph}>
+        {glyph}
+      </span>{" "}
       {text}
     </div>
   );

@@ -22,6 +22,7 @@ const SignUpPage = () => {
               id="name"
               type="text"
               placeholder="Jane Doe"
+              autoComplete="name"
               required
             />
 
@@ -32,6 +33,7 @@ const SignUpPage = () => {
               id="email"
               type="email"
               placeholder="name@example.com"
+              autoComplete="email"
               required
             />
 
@@ -41,8 +43,8 @@ const SignUpPage = () => {
           <p className={styles.cite}>or</p>
 
           <div className={styles.oauth}>
-            <button>Continue with Google</button>
-            <button>Continue with Apple</button>
+            <button type="button">Continue with Google</button>
+            <button type="button">Continue with Apple</button>
           </div>
 
           <p className={styles.muted}>

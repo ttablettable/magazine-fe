@@ -58,6 +58,12 @@
   transform: scale(1.1);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .share .button:hover {
+    transform: none;
+  }
+}
+
 .share .button img {
   width: 20px;
   height: 20px;

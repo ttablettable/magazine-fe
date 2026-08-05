@@ -75,7 +75,7 @@ export function RevisionDropdown({
       {open && (
         <div className={styles.revisionList}>
           {error && (
-            <div className={styles.revisionError}>
+            <div className={styles.revisionError} role="alert">
               <span>Unable to load revisions.</span>
               <button
                 type="button"

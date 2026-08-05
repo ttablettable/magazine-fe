@@ -3,6 +3,21 @@
   z-index: 0;
 }
 
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.skipLink:focus {
+  top: 0;
+}
+
 .siteMain {
   position: relative;
   z-index: 1;

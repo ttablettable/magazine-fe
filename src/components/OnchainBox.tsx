@@ -36,8 +36,14 @@ const OnchainBox: React.FC = () => {
             </button>
           </Link>
         </div>
-        <button id="mintButton" className={styles.mintButton}>
-          <svg width="15" height="15" viewBox="0 0 1001 1001">
+        <button
+          id="mintButton"
+          className={styles.mintButton}
+          disabled
+          aria-label="Mint (coming soon)"
+          title="Coming soon"
+        >
+          <svg width="15" height="15" viewBox="0 0 1001 1001" aria-hidden="true">
             <path
               d="M500.137 0.523193C224.003 0.523193 0.136597 224.39 0.136597 500.523C0.136597 776.656 224.003 1000.52 500.137 1000.52C776.27 1000.52 1000.14 776.656 1000.14 500.523C1000.14 224.39 776.27 0.523193 500.137 0.523193ZM500.137 909.756C274.137 909.756 90.9033 726.523 90.9033 500.523C90.9033 274.523 274.137 91.2899 500.137 91.2899C726.137 91.2899 909.37 274.523 909.37 500.523C909.37 726.523 726.137 909.756 500.137 909.756Z"
               fill="currentColor"
@@ -50,8 +56,15 @@ const OnchainBox: React.FC = () => {
         </button>
       </div>
       <div className={styles.box}>
-        <button id="blockInfo" onClick={toggleMetaVisibility}>
-          <img src="/blockchain.svg" width="25" height="25" alt="blockchain" />
+        <button
+          id="blockInfo"
+          onClick={toggleMetaVisibility}
+          aria-expanded={isMetaVisible}
+          aria-label={
+            isMetaVisible ? "Hide transaction details" : "Show transaction details"
+          }
+        >
+          <img src="/blockchain.svg" width="25" height="25" alt="" />
         </button>
       </div>
     </>

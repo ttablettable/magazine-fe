@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "./BlockquoteCarousel.module.css";
 
 import { issuesData } from "@/content/issue";
@@ -15,17 +15,18 @@ interface Quote {
 }
 
 export default function BlockquoteCarousel({ quotes }: { quotes: Quote[] }) {
-  const router = useRouter();
   const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   // Auto-advance
   useEffect(() => {
+    if (isPaused) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % quotes.length);
     }, 6000);
     return () => clearInterval(id);
-  }, [quotes.length]);
+  }, [quotes.length, isPaused]);
 
   // Slide effect
   useEffect(() => {
@@ -71,45 +72,50 @@ export default function BlockquoteCarousel({ quotes }: { quotes: Quote[] }) {
     <div className={styles.carousel}>
       <div className={styles.track} ref={trackRef}>
         {quotes.map((q, i) => (
-          <div
-            key={i}
-            className={styles.slide}
-            onClick={() => router.push(`/story/${q.slug}`)}
-          >
-            <blockquote className={styles.quote}>{q.text}</blockquote>
+          <div key={i} className={styles.slide}>
+            <Link href={`/story/${q.slug}`} className={styles.slideLink}>
+              <blockquote className={styles.quote}>{q.text}</blockquote>
+              <div className={styles.meta}>
+                <div className={styles.title}>{q.headline}</div>
+              </div>
+            </Link>
 
-            <div className={styles.meta}>
-              <div className={styles.title}>{q.headline}</div>
-
-              {q.issue && (
-                <div
-                  className={styles.issueButton}
-                  style={{
-                    backgroundColor: getIssueColor(q.issue),
-                    color: getContrastColor(getIssueColor(q.issue)),
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    router.push(`/issue/${q.issue}`);
-                  }}
-                >
-                  #{q.issue}
-                </div>
-              )}
-            </div>
+            {q.issue && (
+              <Link
+                href={`/issue/${q.issue}`}
+                className={styles.issueButton}
+                style={{
+                  backgroundColor: getIssueColor(q.issue),
+                  color: getContrastColor(getIssueColor(q.issue)),
+                }}
+              >
+                #{q.issue}
+              </Link>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Pagination */}
       <div className={styles.pagination}>
         {quotes.map((_, i) => (
           <button
             key={i}
             className={`${styles.dot} ${i === index ? styles.active : ""}`}
             onClick={() => setIndex(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === index}
           />
         ))}
+        <button
+          type="button"
+          className={styles.pauseButton}
+          onClick={() => setIsPaused((p) => !p)}
+          aria-label={
+            isPaused ? "Resume auto-advancing slides" : "Pause auto-advancing slides"
+          }
+        >
+          {isPaused ? "Play" : "Pause"}
+        </button>
       </div>
     </div>
   );

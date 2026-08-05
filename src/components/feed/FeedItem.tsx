@@ -5,7 +5,7 @@ import styles from "./Feed.module.css";
 import { GitHubPost } from "@/lib/githubFetch";
 import AuthorList from "../AuthorList";
 import AspectRatioImage from "../ui/AspectRatioImage";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface FeedItemProps {
   post: GitHubPost & {
@@ -15,6 +15,8 @@ interface FeedItemProps {
 }
 
 export default function FeedItem({ post }: FeedItemProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className={styles.fullItem}>
       <div className={styles.cover}>
@@ -49,7 +51,7 @@ export default function FeedItem({ post }: FeedItemProps) {
         <Link href={`/story/${post.slug}`}>
           <motion.p
             className={styles.intro}
-            whileHover={{ scale: 1.1 }}
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             {post.intro}
