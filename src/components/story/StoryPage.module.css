@@ -384,7 +384,81 @@
     border: none;
     width: 100%;
     text-align: left;
-    padding: 1rem 0;
+    padding: 1rem 1rem;
     gap: 0.25rem;
+  }
+}
+
+/* =========================================
+   HIGHLIGHT SELECTION MENU
+   ========================================= */
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: var(--shadow);
+
+  margin-top: 1.6em;
+  border-radius: 50px;
+
+  animation: menuFadeIn 0.2s ease forwards;
+  opacity: 0;
+  background-color: var(--khaki);
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menuFadeInReduced {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation-name: menuFadeInReduced;
+  }
+}
+
+.button {
+  background-color: transparent;
+  width: 3em;
+  height: 3em;
+  margin: 0.6em;
+  border-radius: 50px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: background-color 0.2s ease;
+  }
+}
+
+.button:hover {
+  background-color: var(--pink);
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover {
+    transform: none;
   }
 }

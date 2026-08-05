@@ -97,6 +97,15 @@ export default function BlockquoteCarousel({ quotes }: { quotes: Quote[] }) {
       </div>
 
       <div className={styles.pagination}>
+        <button
+          type="button"
+          className={styles.arrowButton}
+          onClick={() => setIndex((i) => (i - 1 + quotes.length) % quotes.length)}
+          aria-label="Previous slide"
+        >
+          ‹
+        </button>
+
         {quotes.map((_, i) => (
           <button
             key={i}
@@ -106,6 +115,16 @@ export default function BlockquoteCarousel({ quotes }: { quotes: Quote[] }) {
             aria-current={i === index}
           />
         ))}
+
+        <button
+          type="button"
+          className={styles.arrowButton}
+          onClick={() => setIndex((i) => (i + 1) % quotes.length)}
+          aria-label="Next slide"
+        >
+          ›
+        </button>
+
         <button
           type="button"
           className={styles.pauseButton}

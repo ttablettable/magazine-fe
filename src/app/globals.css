@@ -47,7 +47,8 @@
   --revision-load-more-hover: #333333;
 
   --max-width: 1000px;
-  --margin-bottom: 27rem;
+  --footer-reveal-height: 20rem;
+  --margin-bottom: calc(var(--footer-reveal-height) + 7rem);
 
   --shadow:
     0 8px 20px rgba(0, 0, 0, 0.15),
@@ -198,7 +199,7 @@ button:hover {
 .main {
   position: relative;
   z-index: 2;
-  padding-bottom: 27rem;
+  padding-bottom: var(--margin-bottom);
 
   display: flex;
   flex-direction: column;

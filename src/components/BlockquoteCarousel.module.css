@@ -111,6 +111,15 @@
   background: #111;         /* make active rectangle darker */
 }
 
+.arrowButton {
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--black);
+  background: transparent;
+  cursor: pointer;
+}
+
 .pauseButton {
   margin-left: 0.6rem;
   font-size: 0.75rem;

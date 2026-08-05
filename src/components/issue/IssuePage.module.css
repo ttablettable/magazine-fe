@@ -16,7 +16,7 @@
 .title h1 {
   text-transform: uppercase;
   font-size: 5rem;
-  border-bottom: 0.5px solid var(--black);
+  margin-bottom: 0.5rem;
   font-weight: 400;
   text-wrap: balance;
 }
@@ -29,7 +29,7 @@
 }
 
 .header {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   background: var(--gray);
   padding: 0.25rem;
   border: 1px dotted var(--black);
@@ -66,7 +66,6 @@
 }
 
 .story {
-  border-top: 0.5px solid var(--black);
   padding: 0.5rem;
   transition:
     transform 0.25s ease,
@@ -146,8 +145,6 @@
   font-family: var(--playfair);
   margin: 1rem 0;
   padding: 1rem 0;
-  border-bottom: 0.75px dotted var(--black);
-  border-top: 0.75px solid var(--black);
 }
 
 .intGroup article h3,
@@ -158,7 +155,12 @@
 }
 
 .interviews {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
+}
+
+.essays,
+.columns {
+  margin-top: 2.5rem;
 }
 
 .interviews h2 {
@@ -203,8 +205,6 @@
   margin-bottom: var(--margin-bottom);
   background-color: var(--purple);
   padding: 40px 20px;
-  border-top: 0.5px solid var(--black);
-  border-bottom: 0.5px solid var(--black);
   box-sizing: border-box;
 }
 
@@ -216,6 +216,20 @@
   margin-left: auto;
   margin-right: auto;
   line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .essay {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .column {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {

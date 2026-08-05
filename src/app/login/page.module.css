@@ -46,7 +46,7 @@
 .oauth button {
   border-radius: 0px;
   border: none;
-  height: 50px;
+  min-height: 50px;
 }
 
 .form input {
