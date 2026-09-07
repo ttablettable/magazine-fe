@@ -2,10 +2,13 @@
 
 import { PrivyProvider } from '@privy-io/react-auth';
 
+const privyAppId =
+  process.env.NEXT_PUBLIC_PRIVY_APP_ID ?? "cm3wfq954024pgvtjwp6vc2dc";
+
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PrivyProvider
-      appId="cm3wfq954024pgvtjwp6vc2dc"
+      appId={privyAppId}
       config={{
         appearance: {
           theme: 'light',

@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ActorRoleName {
+  editorial
+  admin
+}
+
+model Actor {
+  id             String              @id @default(uuid()) @db.Uuid
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  authIdentities ActorAuthIdentity[]
+  wallets        ActorWallet[]
+  profile        ActorProfile?
+  roles          ActorRole[]         @relation("ActorRoles")
+  roleGrants     ActorRole[]         @relation("ActorRoleGrantor")
+}
+
+model ActorAuthIdentity {
+  id             String   @id @default(uuid()) @db.Uuid
+  actorId        String   @db.Uuid
+  provider       String
+  providerUserId String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  actor          Actor    @relation(fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@unique([provider, providerUserId])
+  @@index([actorId])
+}
+
+model ActorWallet {
+  id                String   @id @default(uuid()) @db.Uuid
+  actorId           String   @db.Uuid
+  chainNamespace    String
+  address           String
+  normalizedAddress String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  actor             Actor    @relation(fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@unique([actorId, chainNamespace, normalizedAddress])
+  @@index([actorId])
+}
+
+model ActorProfile {
+  actorId     String   @id @db.Uuid
+  handle      String?
+  displayName String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  actor       Actor    @relation(fields: [actorId], references: [id], onDelete: Cascade)
+}
+
+model ActorRole {
+  actorId          String        @db.Uuid
+  role             ActorRoleName
+  grantedAt        DateTime      @default(now())
+  grantedByActorId String?       @db.Uuid
+  actor            Actor         @relation("ActorRoles", fields: [actorId], references: [id], onDelete: Cascade)
+  grantedByActor   Actor?        @relation("ActorRoleGrantor", fields: [grantedByActorId], references: [id], onDelete: SetNull)
+
+  @@id([actorId, role])
+  @@index([grantedByActorId])
+}
