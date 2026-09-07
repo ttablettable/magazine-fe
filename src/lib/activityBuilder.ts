@@ -1,4 +1,4 @@
-import type { GitHubPost } from "@/lib/githubFetch";
+import type { GitHubPost } from "@/lib/storyTypes";
 import type { Activity } from "@/components/activity/activity.types";
 
 type BuildActivityArgs = {

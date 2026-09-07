@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { Revision } from "@/utils/fetchRevisions";
+import type { Revision } from "@/lib/storyTypes";
 import styles from "./page.module.css";
 
 interface RevisionDropdownProps {
-  folder: "live" | "archive";
+  storyId: string;
   slug: string;
   onSelectRevision: (rev: Revision) => void;
 }
@@ -17,7 +17,7 @@ interface ApiResponse {
 }
 
 export function RevisionDropdown({
-  folder,
+  storyId,
   slug,
   onSelectRevision,
 }: RevisionDropdownProps) {
@@ -31,13 +31,16 @@ export function RevisionDropdown({
   const [error, setError] = useState(false);
 
   async function loadRevisions(cursor?: string | null) {
+    if (!storyId) return;
     setLoading(true);
     setError(false);
     try {
-      const params = new URLSearchParams({ folder, slug });
+      const params = new URLSearchParams();
       if (cursor) params.set("cursor", cursor);
 
-      const res = await fetch(`/api/revisions?${params.toString()}`);
+      const res = await fetch(
+        `/api/stories/${storyId}/revisions?${params.toString()}`,
+      );
       if (!res.ok) throw new Error("Failed to load revisions");
 
       const data: ApiResponse = await res.json();
@@ -55,10 +58,12 @@ export function RevisionDropdown({
   }
 
   useEffect(() => {
+    if (!storyId) return;
+
     if (open && revisions.length === 0) {
       void loadRevisions();
     }
-  }, [open]);
+  }, [open, revisions.length, storyId]);
 
   const router = useRouter();
 

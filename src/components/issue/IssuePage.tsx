@@ -12,9 +12,9 @@ type Post = {
   headline: string;
   intro?: string;
   authors: string[];
-  issue?: string;
-  channel?: string;
-  keyImage?: string;
+  issue?: string | null;
+  channel?: string | null;
+  keyImage?: string | null;
   lastModified: string | null;
 };
 

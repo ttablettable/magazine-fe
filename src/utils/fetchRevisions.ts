@@ -1,38 +1,13 @@
-const GITHUB_API_URL = "https://api.github.com/graphql";
-const OWNER = "ttablettable";
-const REPO = "content";
-const DEFAULT_BRANCH = "main";
+import "server-only";
 
-async function githubRequest<T>(query: string, variables?: Record<string, any>): Promise<T> {
-  const res = await fetch(GITHUB_API_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query, variables }),
-    // no cache, we actually want fresh history
-    cache: "no-store",
-  });
+import type { Revision } from "@/lib/storyTypes";
+import {
+  getCanonicalStoryDocumentBySlug,
+  getRevisionContentByStoryId,
+  listStoryRevisionsById,
+} from "@/lib/storyService";
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    console.error("GitHub API error:", errorText);
-    throw new Error(`GitHub API error: ${res.statusText}`);
-  }
-
-  const json = await res.json();
-  return json.data;
-}
-
-export interface Revision {
-  revisionSha: string;
-  sha: string;
-  shortSha: string;
-  date: string;
-  message: string;
-  authorName: string;
-}
+export type { Revision } from "@/lib/storyTypes";
 
 export interface RevisionHistoryResult {
   revisions: Revision[];
@@ -51,92 +26,25 @@ export async function fetchRevisionHistory(
   cursor?: string | null,
   pageSize: number = 10
 ): Promise<RevisionHistoryResult> {
-  const path = `${folder}/${slug}.md`;
-
-  const query = `
-    query (
-      $owner: String!,
-      $repo: String!,
-      $qualifiedName: String!,
-      $path: String!,
-      $first: Int!,
-      $after: String
-    ) {
-      repository(owner: $owner, name: $repo) {
-        ref(qualifiedName: $qualifiedName) {
-          target {
-            ... on Commit {
-              history(first: $first, after: $after, path: $path) {
-                pageInfo {
-                  hasNextPage
-                  endCursor
-                }
-                edges {
-                  node {
-                    oid
-                    abbreviatedOid
-                    committedDate
-                    messageHeadline
-                    author {
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await githubRequest<{
-    repository: {
-      ref: {
-        target: {
-          history: {
-            pageInfo: { hasNextPage: boolean; endCursor: string | null };
-            edges: {
-              node: {
-                oid: string;
-                abbreviatedOid: string;
-                committedDate: string;
-                messageHeadline: string;
-                author: { name: string | null } | null;
-              };
-            }[];
-          };
-        };
-      } | null;
-    } | null;
-  }>(query, {
-    owner: OWNER,
-    repo: REPO,
-    qualifiedName: DEFAULT_BRANCH,
-    path,
-    first: pageSize,
-    after: cursor ?? null,
+  const post = await getCanonicalStoryDocumentBySlug(slug, {
+    consistency: "cached",
   });
 
-  const history = data?.repository?.ref?.target?.history;
-  if (!history) {
+  if (!post || post.folder !== folder) {
     return {
       revisions: [],
       pageInfo: { hasNextPage: false, endCursor: null },
     };
   }
 
-  const revisions: Revision[] = history.edges.map(({ node }) => ({
-    revisionSha: node.oid,
-    sha: node.oid,
-    shortSha: node.abbreviatedOid,
-    date: node.committedDate,
-    message: node.messageHeadline,
-    authorName: node.author?.name ?? "Unknown",
-  }));
+  const history = await listStoryRevisionsById(post.storyId, {
+    cursor: cursor ?? null,
+    pageSize,
+    consistency: "cached",
+  });
 
   return {
-    revisions,
+    revisions: history.revisions,
     pageInfo: history.pageInfo,
   };
 }
@@ -149,28 +57,15 @@ export async function fetchRevisionContent(
   slug: string,
   sha: string
 ): Promise<string | null> {
-  const path = `${folder}/${slug}.md`;
-
-  const query = `
-    query ($owner: String!, $repo: String!, $expression: String!) {
-      repository(owner: $owner, name: $repo) {
-        object(expression: $expression) {
-          ... on Blob {
-            text
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await githubRequest<{
-    repository: { object: { text: string } | null } | null;
-  }>(query, {
-    owner: OWNER,
-    repo: REPO,
-    expression: `${sha}:${path}`,
+  const post = await getCanonicalStoryDocumentBySlug(slug, {
+    consistency: "fresh",
   });
 
-  const blob = data?.repository?.object;
-  return blob?.text ?? null;
+  if (!post || post.folder !== folder) {
+    return null;
+  }
+
+  return getRevisionContentByStoryId(post.storyId, sha, {
+    consistency: "fresh",
+  });
 }

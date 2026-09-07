@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Feed.module.css";
-import { GitHubPost } from "@/lib/githubFetch";
+import type { GitHubPost } from "@/lib/storyTypes";
 import AuthorList from "../AuthorList";
 import AspectRatioImage from "../ui/AspectRatioImage";
 

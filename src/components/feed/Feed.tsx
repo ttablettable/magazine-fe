@@ -1,6 +1,6 @@
 import styles from "./Feed.module.css";
 import FeedItem from "./FeedItem";
-import { GitHubPost } from "@/lib/githubFetch";
+import type { GitHubPost } from "@/lib/storyTypes";
 
 interface FeedProps {
   posts: (GitHubPost & {
