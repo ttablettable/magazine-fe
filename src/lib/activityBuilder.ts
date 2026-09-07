@@ -21,9 +21,10 @@ export function buildActivity({
   return posts
     .filter((post) => post.authors.includes(authorSlug))
     .map((post): Activity => ({
-      id: `authored-${post.slug}`,
+      id: `authored-${post.storyId ?? post.slug}`,
       type: "authored",
       title: post.headline,
+      storyId: post.storyId ?? undefined,
       storySlug: post.slug,
       issue: post.issue || undefined,
       date: normalizeDate(post.published ?? post.lastModified),

@@ -7,6 +7,7 @@ const REPO = "content";
 export interface GitHubPost extends ParsedMarkdown {
   slug: string;
   path: string;
+  revisionSha?: string;
   lastModified: string | null;
 }
 

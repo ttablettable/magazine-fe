@@ -26,6 +26,7 @@ async function githubRequest<T>(query: string, variables?: Record<string, any>):
 }
 
 export interface Revision {
+  revisionSha: string;
   sha: string;
   shortSha: string;
   date: string;
@@ -126,6 +127,7 @@ export async function fetchRevisionHistory(
   }
 
   const revisions: Revision[] = history.edges.map(({ node }) => ({
+    revisionSha: node.oid,
     sha: node.oid,
     shortSha: node.abbreviatedOid,
     date: node.committedDate,

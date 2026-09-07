@@ -88,7 +88,7 @@ export default function StoryPage({
   };
 
   async function handleRevisionSelect(rev: Revision) {
-    router.push(`/story/${post.slug}/${rev.sha}`);
+    router.push(`/story/${post.slug}/${rev.revisionSha}`);
   }
 
   function normalizeImageUrl(src: string): string {

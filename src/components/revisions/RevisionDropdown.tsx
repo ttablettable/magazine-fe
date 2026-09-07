@@ -98,7 +98,7 @@ export function RevisionDropdown({
                 className={styles.revisionItem}
                 title={label}
                 onClick={() => {
-                  router.push(`/story/${slug}/${rev.shortSha}`);
+                  router.push(`/story/${slug}/${rev.revisionSha}`);
                 }}
               >
                 {label}

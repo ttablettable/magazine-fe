@@ -13,6 +13,7 @@ export interface Activity {
 
   // authored-specific
   title?: string;
+  storyId?: string;
   storySlug?: string;
   issue?: string;
 
