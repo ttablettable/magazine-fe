@@ -17,7 +17,12 @@ export async function GET(
     const pageSizeParam = searchParams.get("pageSize");
     const pageSize = pageSizeParam ? Number(pageSizeParam) : 10;
 
-    if (Number.isNaN(pageSize) || pageSize <= 0) {
+    if (
+      Number.isNaN(pageSize) ||
+      !Number.isInteger(pageSize) ||
+      pageSize < 1 ||
+      pageSize > 100
+    ) {
       throw new StoryValidationError("Invalid pageSize");
     }
 

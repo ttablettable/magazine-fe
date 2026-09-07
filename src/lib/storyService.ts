@@ -617,7 +617,9 @@ export async function getStoryRevisionViewBySlug(
   revisionSha: string,
   options: { consistency?: GitHubConsistency } = {},
 ): Promise<CanonicalStoryDocument | null> {
-  const story = await getCanonicalStoryDocumentBySlug(slug, options);
+  const story = await getCanonicalStoryDocumentBySlug(slug, {
+    consistency: options.consistency ?? "fresh",
+  });
   if (!story) {
     return null;
   }
@@ -637,7 +639,7 @@ export async function getStoryRevisionViewBySlug(
     slug: story.slug,
     folder: story.folder,
     path: story.path,
-    currentRevisionSha: revisionSha,
+    currentRevisionSha: story.currentRevisionSha,
     revisionSha,
     lastModified: story.lastModified,
     headline: parsed.headline ?? story.headline,
