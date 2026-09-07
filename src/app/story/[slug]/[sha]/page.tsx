@@ -12,7 +12,7 @@ export default async function StoryRevisionPage({
     sha: string;
   }>;
 }) {
-  const { slug, sha } = await params;
+  const { slug, sha: revisionSha } = await params;
 
   // 1. Base metadata
   const posts = await fetchArchivePosts();
@@ -29,7 +29,7 @@ export default async function StoryRevisionPage({
   }
 
   // 2. Raw markdown at revision
-  const raw = await fetchRevisionContent("archive", slug, sha);
+  const raw = await fetchRevisionContent("archive", slug, revisionSha);
 
   if (!raw) {
     return (
@@ -48,6 +48,8 @@ export default async function StoryRevisionPage({
   const post = {
     ...basePost,
     ...parsed,
+    storyId: parsed.storyId ?? basePost.storyId,
+    revisionSha,
     lastModified: new Date().toISOString(),
   };
 
@@ -56,7 +58,7 @@ export default async function StoryRevisionPage({
       post={post}
       relatedPosts={[]}
       isRevision
-      revisionSha={sha}
+      revisionSha={revisionSha}
     />
   );
 }
