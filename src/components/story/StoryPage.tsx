@@ -22,7 +22,7 @@ import NotificationHost from "@/components/ui/notifications/NotificationHost";
 import AspectRatioImage from "@/components/ui/AspectRatioImage";
 import Icon from "@/components/ui/Icon";
 
-import { GitHubPost } from "@/lib/githubFetch";
+import type { GitHubPost, Revision } from "@/lib/storyTypes";
 import { issuesData } from "@/content/issue";
 
 import ReactMarkdown from "react-markdown";
@@ -33,7 +33,6 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import Image from "next/image";
 import ReadingTool from "./ReadingTool";
 
-import type { Revision } from "@/utils/fetchRevisions";
 import { RevisionDropdown } from "@/components/revisions/RevisionDropdown";
 import { ViewDiff } from "@/components/revisions/ViewDiff";
 import AuthorList from "../AuthorList";
@@ -102,26 +101,19 @@ export default function StoryPage({
 
   useEffect(() => {
     if (isRevision) return;
+    if (!post.storyId) return;
 
     async function loadPreviousRevision() {
       try {
-        const revRes = await fetch(
-          `/api/revisions?folder=archive&slug=${post.slug}`,
-        );
+        const revRes = await fetch(`/api/stories/${post.storyId}/revisions`);
         if (!revRes.ok) return;
 
         const revData = await revRes.json();
         const previous = revData.revisions?.[1];
         if (!previous) return;
 
-        const params = new URLSearchParams({
-          folder: "archive",
-          slug: post.slug,
-          sha: previous.sha,
-        });
-
         const contentRes = await fetch(
-          `/api/revision-content?${params.toString()}`,
+          `/api/stories/${post.storyId}/revisions/${previous.revisionSha}`,
         );
         if (!contentRes.ok) return;
 
@@ -133,7 +125,7 @@ export default function StoryPage({
     }
 
     loadPreviousRevision();
-  }, [post.slug, isRevision]);
+  }, [post.slug, post.storyId, isRevision]);
 
   const changedIndexes = useMemo(() => {
     if (!previousContent || isRevision) return null;
@@ -339,7 +331,7 @@ export default function StoryPage({
                 </div>
                 <div>
                   <RevisionDropdown
-                    folder="archive"
+                    storyId={post.storyId ?? ""}
                     slug={post.slug}
                     onSelectRevision={handleRevisionSelect}
                   />

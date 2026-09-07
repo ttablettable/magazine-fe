@@ -1,19 +1,7 @@
 import matter from "gray-matter";
+import type { ParsedMarkdown } from "@/lib/storyTypes";
 
-export interface ParsedMarkdown {
-  // Canonical story identity from frontmatter. This is the stable ZID/root ID.
-  storyId: string | null;
-  slug: string;
-  headline: string;
-  intro: string;
-  published?: string;
-  authors: string[];
-  issue?: string;
-  channel?: string;
-  featured?: boolean;
-  keyImage?: string;
-  content: string;
-}
+export type { ParsedMarkdown } from "@/lib/storyTypes";
 
 function readStoryId(data: Record<string, any>): string | null {
   const rawStoryId = data.ZID ?? data.zid ?? null;
@@ -45,9 +33,9 @@ export function parseMarkdown(raw: string, slug: string): ParsedMarkdown {
     intro: data.intro || "",
     published: data.published || null,
     authors,
-    issue: data.issue || "",
-    channel: data.channel || "",
-    featured: data.featured || false,
+    issue: data.issue || null,
+    channel: data.channel || null,
+    featured: Boolean(data.featured || false),
     keyImage: data["key-image"] || data.keyImage || null,
 
     content,

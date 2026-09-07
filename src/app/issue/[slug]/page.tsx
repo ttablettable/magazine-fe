@@ -24,7 +24,7 @@ export default async function Issue({ params }: IssuePageProps) {
   }
 
   const issuePosts = posts.filter(
-    (p) => p.issue?.toLowerCase() === slug.toLowerCase()
+    (p) => p.issue?.toLowerCase() === slug.toLowerCase(),
   );
 
   return <IssuePage issueMeta={issueMeta} posts={issuePosts} />;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchArchivePosts } from "@/lib/githubFetch";
+import { getStoryPageDataBySlug } from "@/lib/storyService";
 import StoryPage from "@/components/story/StoryPage";
 
 type StoryPageProps = {
@@ -9,9 +10,7 @@ type StoryPageProps = {
 export default async function Story({ params }: StoryPageProps) {
   const { slug } = await params;
 
-  // Fetch all posts (you can optimize later to fetch just one)
-  const posts = await fetchArchivePosts();
-  const post = posts.find((p) => p.slug === slug);
+  const post = await getStoryPageDataBySlug(slug);
 
   if (!post) {
     return (
@@ -22,6 +21,8 @@ export default async function Story({ params }: StoryPageProps) {
       </main>
     );
   }
+
+  const posts = await fetchArchivePosts();
 
   return <StoryPage post={post} relatedPosts={posts} />;
 }

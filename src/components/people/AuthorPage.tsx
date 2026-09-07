@@ -2,7 +2,7 @@
 
 import ActivityFeed from "@/components/activity/ActivityFeed";
 import { buildActivity } from "@/lib/activityBuilder";
-import type { GitHubPost } from "@/lib/githubFetch";
+import type { GitHubPost } from "@/lib/storyTypes";
 import { PEOPLE } from "@/data/people";
 import type { PersonLinkType } from "@/data/people";
 import {
