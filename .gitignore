@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# local agent/tooling state
+.agents/
+.claude/
+plans/
+skills-lock.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*
