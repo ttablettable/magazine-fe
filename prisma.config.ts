@@ -11,7 +11,10 @@ for (const path of [".env.local", ".env"]) {
   }
 }
 
-const migrationUrl = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+const migrationUrl =
+  process.env.DIRECT_URL ??
+  process.env.DATABASE_URL_UNPOOLED ??
+  process.env.DATABASE_URL;
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -19,6 +22,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   // Client generation is intentionally possible without database credentials.
-  // Commands that connect to Postgres require DIRECT_URL or DATABASE_URL.
+  // Commands that connect to Postgres prefer an explicit direct URL, then
+  // Neon's native unpooled URL, and only then the pooled runtime URL.
   datasource: migrationUrl ? { url: migrationUrl } : undefined,
 });

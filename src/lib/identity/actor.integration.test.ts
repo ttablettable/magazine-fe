@@ -1,10 +1,22 @@
 import assert from "node:assert/strict";
 import { after, test } from "node:test";
+import { loadEnvFile } from "node:process";
 import { createPrismaClient } from "@/lib/db/createPrismaClient";
 import { toVerifiedEvmWallets } from "@/lib/identity/wallets";
 
+for (const path of [".env.local", ".env"]) {
+  try {
+    loadEnvFile(path);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+}
+
 const shouldRun = process.env.TTABLE_DATABASE_INTEGRATION === "1";
-const connectionString = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+const connectionString =
+  process.env.DIRECT_URL ??
+  process.env.DATABASE_URL_UNPOOLED ??
+  process.env.DATABASE_URL;
 const providerUserIds = ["privy:test:actor-a", "privy:test:actor-b"];
 
 const prisma = shouldRun && connectionString
@@ -76,6 +88,11 @@ test("Neon actor identity, concurrency, wallet, and profile regression", {
         type: "wallet",
         chain_type: "ethereum",
         address: "0xBb00000000000000000000000000000000000002",
+      },
+      {
+        type: "wallet",
+        chain_type: "ethereum",
+        address: "0xaa00000000000000000000000000000000000001",
       },
     ]),
     prisma!,

@@ -9,9 +9,10 @@ not copied into Neon.
 The application uses Prisma ORM and Prisma Client 7.10.0 with
 `@prisma/adapter-neon` 7.10.0 and `@neondatabase/serverless` 1.1.0. The runtime
 reads `DATABASE_URL`, which should be Neon's pooled connection URL. Prisma CLI
-migration commands prefer `DIRECT_URL` and fall back to `DATABASE_URL`. This keeps
-serverless runtime traffic pooled while allowing schema migrations to use a direct
-development connection.
+migration and operator commands resolve connections in this order:
+`DIRECT_URL`, `DATABASE_URL_UNPOOLED`, then `DATABASE_URL`. This keeps serverless
+runtime traffic pooled, supports Neon's native environment output without manual
+variable copying, and retains `DIRECT_URL` as a portable explicit override.
 
 Prisma 7 requires a driver adapter for direct database access and supports Node 24.
 The Neon adapter is generally available and uses Neon's serverless driver, which is

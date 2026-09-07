@@ -32,9 +32,14 @@ if (!Object.values(ActorRoleName).includes(requestedRole as ActorRoleName)) {
   throw new Error("Role must be one of: editorial, admin");
 }
 
-const connectionString = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+const connectionString =
+  process.env.DIRECT_URL ??
+  process.env.DATABASE_URL_UNPOOLED ??
+  process.env.DATABASE_URL;
 if (!connectionString) {
-  throw new Error("Missing DIRECT_URL or DATABASE_URL");
+  throw new Error(
+    "Missing DIRECT_URL, DATABASE_URL_UNPOOLED, or DATABASE_URL",
+  );
 }
 
 const prisma = createPrismaClient(connectionString);
